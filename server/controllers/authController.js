@@ -10,7 +10,9 @@ const createToken = id => {
 // POST - signs in user
 exports.signup = async (req, res) => {
   try {
+    console.log(req.body);
     const { email, password } = req.body;
+    // debugger;
     const newUser = await User.create({
       email: email,
       password: password

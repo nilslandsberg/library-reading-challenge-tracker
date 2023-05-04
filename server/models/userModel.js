@@ -19,7 +19,7 @@ const userSchema = new Schema({
 }, {timestamps: true});
 
 // pre-save middleware to hash password
-userSchema.pre('save', async (next) => {
+userSchema.pre('save', async function(next) {
   if (!this.isModified('password')) {
     return next();
   } else {
