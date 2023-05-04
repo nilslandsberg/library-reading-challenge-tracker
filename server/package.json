@@ -20,6 +20,8 @@
     "nodemon": "^2.0.22"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "devStart": "nodemon server.js",
+    "build": "npm i"
   }
 }
