@@ -11,9 +11,10 @@ const createToken = id => {
 exports.signup = async (req, res) => {
   try {
     console.log(req.body);
-    const { email, password } = req.body;
+    const { username, email, password } = req.body;
     // debugger;
     const newUser = await User.create({
+      username: username,
       email: email,
       password: password
     });
@@ -40,15 +41,15 @@ exports.signup = async (req, res) => {
 // POST - logs user in
 exports.login = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
 
-    if (!email || !password) {
+    if (!username || !password) {
       return res.status(400).json({
-        message: "Please provide an email and password"
+        message: "Please provide a username and password"
       })
     };
 
-    const user = await User.findOne({ email: email }).select("+password");
+    const user = await User.findOne({ username: username }).select("+password");
 
     if (!user || !await user.correctPassword(password, user.password)) {
       return res.status(401).json({
