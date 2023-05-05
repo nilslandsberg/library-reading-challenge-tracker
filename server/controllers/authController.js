@@ -53,16 +53,17 @@ exports.login = async (req, res) => {
 
     if (!user || !await user.correctPassword(password, user.password)) {
       return res.status(401).json({
-        message: "Invalid email or password"
+        message: "Invalid username or password"
       });
     };
 
     const token = createToken(user._id);
 
     return res.status(200).json({
-      user: user,
+      user: user.username,
       token: token
     });
+
   } catch (err) {
     return res.status(500).json({
       message: err.message

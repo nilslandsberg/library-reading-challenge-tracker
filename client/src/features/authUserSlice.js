@@ -4,7 +4,7 @@ import { setAuthMessage } from "./authMessageSlice";
 
 const userData = JSON.parse(localStorage.getItem("user"));
 
-const user = userData ? userData.user.username : null;
+const user = userData ? userData.user : null;
 
 export const signup = createAsyncThunk("auth/signup", async(data, thunkAPI) => {
   const { username, email, password } = data;
@@ -28,8 +28,9 @@ export const login = createAsyncThunk("auth/login", async(data, thunkAPI) => {
   const { username, password } = data;
   try {
     const response = await authService.login(username, password);
-    thunkAPI.dispatch(setAuthMessage(response.data.message));
-    return response
+    console.log(response);
+    thunkAPI.dispatch(setAuthMessage(`Welcome back, ${user}!`));
+    return response;
   } catch (error) {
     const message =
     (error.response &&
@@ -62,7 +63,7 @@ const userAuthSlice = createSlice({
     });
     builder.addCase(login.fulfilled, (state, action) => {
       state.isLoggedIn = true;
-      state.user = action.payload.username;
+      state.user = action.payload;
     });
     builder.addCase(login.rejected, (state, action) => {
       state.isLoggedIn = false;
