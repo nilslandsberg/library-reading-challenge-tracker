@@ -3,13 +3,13 @@ import "bootstrap/dist/css/bootstrap.css";
 
 const NavBar = () => {
   return (
-    <NavBar bg="light" variant="dark" expand="md" fixed="top">
+    <Navbar bg="dark" variant="dark" expand="md" fixed="top">
       <Container fluid>
         <Navbar.Brand href="/">
           2023 Summer Reading Log
         </Navbar.Brand>
       </Container>
-    </NavBar>
+    </Navbar>
   )
 }
 

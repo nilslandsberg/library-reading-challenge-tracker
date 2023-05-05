@@ -12,9 +12,9 @@ const App = () => {
       </Container>
       <br />
       <Container className="md-4 mt-5">
-        <Routes>
-          <Route exact path='/' element={<HomePage />} />
-        </Routes>  
+        {/* <Routes> */}
+          {/* <Route exact path='/' element={<HomePage />} /> */}
+        {/* </Routes>   */}
       </Container>
     </>
   );
