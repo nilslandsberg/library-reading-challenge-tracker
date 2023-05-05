@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = "http:localhost:8000/api/users/";
+const API_URL = "http://localhost:8000/api/users/";
 
 const signup = (username, email, password) => {
   const signUpRequest = { 
@@ -18,9 +18,11 @@ const login = (username, password) => {
     password: password
   })
   .then((response) => {
-    
+    console.log(response)
+    const token = response.data.token
+    const user = response.data.user
     if (response.data.token) {
-      localStorage.setItem("user", JSON.stringify(response.data));
+      localStorage.setItem("user", JSON.stringify({ token, user }));
     }
     return response.data.user;
   });
