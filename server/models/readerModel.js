@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const childSchema = new Schema({
+const readerSchema = new Schema({
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'Users'
@@ -16,6 +16,9 @@ const childSchema = new Schema({
     min: 1,
     max: 18
   },
+  avatar: {
+
+  },
   books: [
     {
     type: String,
@@ -24,4 +27,4 @@ const childSchema = new Schema({
   ]
 }, {timestamps: true});
 
-module.exports = mongoose.model('Child', childSchema);
+module.exports = mongoose.model('Reader', readerSchema);
