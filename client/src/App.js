@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router';
 import NavBar from './components/NavBar';
 import HomePage from './components/HomePage';
 import LoginForm from './containers/LoginForm';
+import SignUpForm from './containers/SignUpForm';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Routes> 
           <Route exact path='/' element={<HomePage />} />
           <Route path='/login' element={<LoginForm />} />
+          <Route path='/signup' element={<SignUpForm />} />
         </Routes>  
       </Container>
     </>

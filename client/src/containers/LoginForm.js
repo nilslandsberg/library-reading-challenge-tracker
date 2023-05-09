@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { login } from "../features/authUserSlice";
-import LoginAlert from "../components/LoginAlert";
+import CustomAlert from "../components/CustomAlert";
 
 const LoginForm = () => {
   const user = useSelector((state) => state.userAuth)
@@ -26,7 +26,7 @@ const LoginForm = () => {
       <Card className="col-3 mx-auto" style={{ minWidth: "300px" }}>
         <Card.Header>Login</Card.Header>
           <Card.Body>
-          {errorMessage.message && <LoginAlert message={errorMessage.message} />}
+          {errorMessage.message && <CustomAlert message={errorMessage.message} />}
             <Form onSubmit={handleSubmit(handleFormSubmit)}> 
               <FloatingLabel controlId="formBasicUsername" className="mb-3" label={
                 <span>

@@ -3,7 +3,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 
 const userRouter = require('./routes/userRoutes');
-const childRouter = require('./routes/childRoutes');
+const readerRouter = require('./routes/readerRoutes');
 
 const app = express();
 
@@ -12,6 +12,6 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/api/users', userRouter);
-app.use('/api/children', childRouter);
+app.use('/api/readers', readerRouter);
 
 module.exports = app;
