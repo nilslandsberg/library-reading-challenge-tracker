@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Button } from "react-bootstrap"
 import AddChildModal from "./AddReaderModal";
+import ModalContext from "./ModalContext";
 
 const AddReaderButton = () => {
   const [ showModal, setShowModal ] = useState(false);
@@ -15,8 +16,10 @@ const AddReaderButton = () => {
 
   return (
     <span>
-    <Button onClick={handleShowModal}>+ Add Reader</Button>
-    <AddChildModal showModal={showModal} handleCloseModal={handleCloseModal} />
+      <ModalContext.Provider value={handleCloseModal}>
+        <Button onClick={handleShowModal}>+ Add Reader</Button>
+        <AddChildModal showModal={showModal} handleCloseModal={handleCloseModal} />
+      </ModalContext.Provider>
     </span>
   )
 }

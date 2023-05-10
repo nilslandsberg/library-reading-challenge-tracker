@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { Carousel, FloatingLabel, Form, Image } from "react-bootstrap";
+import { useContext, useState } from "react"
+import { Button, Carousel, FloatingLabel, Form, Image } from "react-bootstrap";
 import batman from '../files/avatars/4043232_avatar_batman_comics_hero_icon.svg';
 import smilingBoy from '../files/avatars/4043235_afro_boy_child_kid_icon.svg';
 import spikedHairBoy from '../files/avatars/4043236_avatar_boy_male_portrait_icon.svg';
@@ -8,17 +8,36 @@ import hatBoy from '../files/avatars/4043238_avatar_boy_kid_person_icon.svg';
 import cactusPirate from '../files/avatars/4043242_avatar_cacti_cactus_pirate_icon.svg';
 import coffeeZorro from '../files/avatars/4043245_avatar_coffee_cup_zorro_icon.svg';
 import sloth from '../files/avatars/4043272_avatar_lazybones_sloth_sluggard_icon.svg';
+import ponyTailGirl from '../files/avatars/4043250_avatar_child_girl_kid_icon.svg';
+import pigTailGirl from '../files/avatars/4043252_child_girl_kid_person_icon.svg';
+import zombie from '../files/avatars/4043266_avatar_dead_monster_zombie_icon.svg';
+import alien from '../files/avatars/4043268_alien_avatar_space_ufo_icon.svg';
+import harleyQuinn from '../files/avatars/4043270_avatar_joker_squad_suicide_woman_icon.svg';
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { addReaderAction } from "../features/readerSlice";
+import ModalContext from "./ModalContext";
 
 
 const AddReaderForm = () => {
-  const [ selectedAvatar, setSelectedAvatar ] = useState(batman);
+  const [ selectedAvatar, setSelectedAvatar ] = useState(ponyTailGirl);
   const { register, handleSubmit, reset } = useForm();
+  const handleCloseModal = useContext(ModalContext)
+
+  const dispatch = useDispatch();
 
   const avatars = [ 
     {
-      label: "Batman",
-      path: batman
+      label: "Ponytail Girl",
+      path: ponyTailGirl
+    },
+    {
+      label: "Pigtail Girl",
+      path: pigTailGirl
+    },
+    {
+      label: "Hat Boy",
+      path: hatBoy
     },
     {
       label: "Smiling Boy",
@@ -29,12 +48,16 @@ const AddReaderForm = () => {
       path: spikedHairBoy
     },
     {
-      label: "Screaming Avocado",
-      path: screamingAvocado
+      label: "Batman",
+      path: batman
     },
     {
-      label: "Hat Boy",
-      path: hatBoy
+      label: "Harley Quinn",
+      path: harleyQuinn
+    },
+    {
+      label: "Screaming Avocado",
+      path: screamingAvocado
     },
     {
       label: "Cactus Pirate",
@@ -48,15 +71,30 @@ const AddReaderForm = () => {
       label: "Sloth",
       path: sloth
     },
+    {
+      label: "Zombie",
+      path: zombie
+    },
+    {
+      label: "Alien",
+      path: alien
+    }
   ];
 
   const handleFormSubmit = (data) => {
-
+    const requestBody = {
+      name: data.name,
+      age: data.age,
+      avatar: selectedAvatar
+    };
+    dispatch(addReaderAction(requestBody));
+    handleCloseModal();
+    reset();
   }
 
   return (
     <>
-      <Form onSumbit={handleSubmit(handleFormSubmit)}>
+      <Form onSubmit={handleSubmit(handleFormSubmit)}>
         <Carousel 
           activeIndex={avatars.findIndex((avatar) => avatar.path === selectedAvatar)}
           onSelect={(selectedIndex) => setSelectedAvatar(avatars[selectedIndex].path)}
@@ -68,7 +106,7 @@ const AddReaderForm = () => {
         >
           {avatars.map((avatar, index) => (
             <Carousel.Item key={index}>
-              <img className="selected-avatar" src={avatar.path} alt={avatar.label} />
+              <Image className="selected-avatar" src={avatar.path} alt={avatar.label} />
             </Carousel.Item>
           ))}
         </Carousel>
@@ -91,6 +129,7 @@ const AddReaderForm = () => {
             }>
               <Form.Control type="number" placeholder="Age" {...register("age")} required />
         </FloatingLabel>
+        <Button type="submit" variant="primary">Submit</Button>
       </Form>
     </>
   );
