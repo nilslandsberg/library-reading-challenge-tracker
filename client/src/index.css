@@ -23,3 +23,13 @@ code {
 .readers {
   padding-top: 10px;
 }
+
+.carousel-control-next,
+.carousel-control-prev /*, .carousel-indicators */ {
+    filter: invert(100%);
+}
+
+.selected-avatar {
+  height: 200px;
+  width: 100%
+}
