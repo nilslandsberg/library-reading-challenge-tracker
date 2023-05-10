@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, FloatingLabel, Form, Spinner, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { login } from "../features/authUserSlice";
 import CustomAlert from "../components/CustomAlert";
+import { getReadersAction } from "../features/readerSlice";
 
 const LoginForm = () => {
   const user = useSelector((state) => state.userAuth)
@@ -21,6 +22,18 @@ const LoginForm = () => {
     setLoading(false);
   }
   
+  useEffect(() => {
+    if (user.isLoggedIn) {
+      dispatch(getReadersAction());
+      navigate('/');
+    } else {
+      if (errorMessage.message) {
+        console.log(errorMessage.message);
+        <CustomAlert variant="danger" message='test' />
+      }
+    }
+  }, [user, errorMessage, dispatch, navigate]);
+
   return (
     <div className="pt-5">
       <Card className="col-3 mx-auto" style={{ minWidth: "300px" }}>
@@ -36,8 +49,6 @@ const LoginForm = () => {
               }>
                 <Form.Control type="username" placeholder="Enter Username" {...register("username")} required />
               </FloatingLabel>
-             
-
               <FloatingLabel controlId="formBasicPassword" className="mb-3" label={
                 <span>
                   <span className="red-required">* </span>
@@ -55,7 +66,6 @@ const LoginForm = () => {
               )}
             </Form>
           </Card.Body>
-
       </Card>
     </div>
   )

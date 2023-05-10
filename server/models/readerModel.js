@@ -17,7 +17,7 @@ const readerSchema = new Schema({
     max: 18
   },
   avatar: {
-
+    type: String,
   },
   books: [
     {

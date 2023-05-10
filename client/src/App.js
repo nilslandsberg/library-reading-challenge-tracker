@@ -2,7 +2,7 @@ import { Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Routes, Route } from 'react-router';
 import NavBar from './components/NavBar';
-import HomePage from './components/HomePage';
+import HomePage from './containers/HomePage';
 import LoginForm from './containers/LoginForm';
 import SignUpForm from './containers/SignUpForm';
 
