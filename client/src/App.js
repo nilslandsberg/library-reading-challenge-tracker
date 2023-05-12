@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 import HomePage from './containers/HomePage';
 import LoginForm from './containers/LoginForm';
 import SignUpForm from './containers/SignUpForm';
+import SearchForBooks from './components/SearchForBook';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route exact path='/' element={<HomePage />} />
           <Route path='/login' element={<LoginForm />} />
           <Route path='/signup' element={<SignUpForm />} />
+          <Route path='/search' element={<SearchForBooks />} />
         </Routes>  
       </Container>
     </>
