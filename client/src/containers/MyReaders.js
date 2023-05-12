@@ -9,13 +9,14 @@ const MyReaders = () => {
       {userReaders && userReaders.length > 0 ? (
         <>
           {userReaders.map((reader, index) => (
-            <Card className="reader-card" key={reader._id} style={{ width: '18rem' }}>
-              <Card.Img src={reader.avatar} variant="top" />
+            <Card className="reader-card text-center" key={reader._id}>
+              <Card.Header as="h3">{reader.name}</Card.Header>
+              <Card.Img className="mb-2" src={reader.avatar} variant="top" />
+              <Card.Title>
+                Age: {reader.age}
+              </Card.Title>
               <Card.Body>
-                {reader.name}
-              </Card.Body>
-              <Card.Body>
-                {reader.age}
+                Books Read: {reader.books.length}
               </Card.Body>
             </Card>
           ))}

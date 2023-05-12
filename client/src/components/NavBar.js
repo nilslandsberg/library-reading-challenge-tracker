@@ -1,4 +1,4 @@
-import { Navbar, Container, Nav, Dropdown } from "react-bootstrap";
+import { Navbar, Container, Nav, Dropdown, NavLink } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import { useSelector } from "react-redux";
 import Login from "./Login";
@@ -13,6 +13,9 @@ const NavBar = () => {
     if (userIsLoggedIn) {
       return (
         <>
+          <Nav.Item>
+            <NavLink href='/search'>Book Search</NavLink>
+          </Nav.Item>
           <Dropdown style={{ marginLeft: '10px' }}>
             <Dropdown.Toggle className="nav-dropdowns" variant="light" id="dropdown-logout">
               {username}
