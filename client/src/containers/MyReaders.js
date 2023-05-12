@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 
 const MyReaders = () => {
   const userReaders = useSelector((state) => state.userReaders.readers)
-  console.log(userReaders)
+
   return (
     <>
       {userReaders && userReaders.length > 0 ? (
