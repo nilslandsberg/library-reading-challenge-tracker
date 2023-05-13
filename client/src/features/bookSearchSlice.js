@@ -54,7 +54,7 @@ export const searchBooksByKeyword = createAsyncThunk("bookSearch/keyword", async
 });
 
 const initialState = {
-  books: {},
+  books: [],
 }
 
 const bookSearchSlice = createSlice({

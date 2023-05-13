@@ -3,7 +3,7 @@ import { Button, Col, Dropdown, Form, InputGroup, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { searchBooksByAuthor, searchBooksByKeyword, searchBooksByTitle } from "../features/bookSearchSlice";
-import SearchResults from "../containers/SearchResults";
+import BookSearchResults from "../containers/BookSearchResults";
 
 const SearchForBooks = () => {
   const [searchType, setSearchType] = useState("Keyword");
@@ -73,7 +73,7 @@ const SearchForBooks = () => {
         </Form>
       </Row>
       <hr />
-      <SearchResults />
+      <BookSearchResults />
     </>
   );
 };
