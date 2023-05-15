@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import userAuthReducer from '../features/authUserSlice';
+import userAuthReducer from '../features/userAuthSlice';
 import authMessageReducer from '../features/authMessageSlice';
 import readersReducer from '../features/readerSlice';
 import bookSearchReducer from '../features/bookSearchSlice';

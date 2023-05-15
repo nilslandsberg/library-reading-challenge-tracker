@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import "bootstrap/dist/css/bootstrap.css";
 import { Dropdown } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../features/authUserSlice";
+import { logout } from "../features/userAuthSlice";
 // import { setModalClosed } from "../features/modalOpenSlice";
 
 

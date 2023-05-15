@@ -8,7 +8,7 @@ const API_URL = 'https://www.googleapis.com/books/v1/volumes?q='
 export const searchBooksByTitle = createAsyncThunk("bookSearch/Title", async(data, rejectWithValue) => {
 
   try {
-    const response = await axios.get(API_URL + 'intitle:' + data + '&key=' + apiKey);
+    const response = await axios.get(API_URL + 'intitle:' + data + '&printType=books&key=' + apiKey);
       // logic to pull necessary data from the api response
     const bookInfo = response.data.items;
     const primaryBookInfo = bookInfo.map(({ volumeInfo }) => volumeInfo);
@@ -24,7 +24,7 @@ export const searchBooksByTitle = createAsyncThunk("bookSearch/Title", async(dat
 export const searchBooksByAuthor = createAsyncThunk("bookSearch/author", async(data, rejectWithValue) => {
 
   try {
-    const response = await axios.get(API_URL + 'inauthor:' + data + '&key=' + apiKey);
+    const response = await axios.get(API_URL + 'inauthor:' + data + '&printType=books&key=' + apiKey);
     // logic to pull necessary data from the api response
     const bookInfo = response.data.items;
     const primaryBookInfo = bookInfo.map(({ volumeInfo }) => volumeInfo);
@@ -40,7 +40,7 @@ export const searchBooksByAuthor = createAsyncThunk("bookSearch/author", async(d
 export const searchBooksByKeyword = createAsyncThunk("bookSearch/keyword", async(data, rejectWithValue) => {
 
   try {
-    const response = await axios.get(API_URL + data + '&key=' + apiKey);
+    const response = await axios.get(API_URL + data + '&printType=books&key=' + apiKey);
     // logic to pull necessary data from the api response
     const bookInfo = response.data.items;
     const primaryBookInfo = bookInfo.map(({ volumeInfo }) => volumeInfo);
