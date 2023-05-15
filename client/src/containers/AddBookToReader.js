@@ -2,13 +2,20 @@ import { useState } from "react"
 import { Dropdown } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
-const AddBookToReader = () => {
+const AddBookToReader = ({ book }) => {
   const userReaders = JSON.parse(localStorage.getItem('userReaders'));
   const [ selectedReader, setSelectedReader ] = useState();
-
+  console.log(book)
   const handleSelect = (name, id) => {
-    setSelectedReader(name);
+    const requestBody = {
+      title: book.title,
+      author: book.authors,
+      pages: book.pageCount,
+      description: book.description,
+      imageUrl: book.imageLinks.thumbnail,
+    }
     console.log(id);
+    console.log(requestBody)
   }
 
   console.log(selectedReader)
