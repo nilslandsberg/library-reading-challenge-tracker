@@ -15,7 +15,7 @@ const authMessageSlice = createSlice({
   },
 });
 
-const { reducer, actions } = authMessageSlice;
+const { actions } = authMessageSlice;
 
 export const { setAuthMessage, clearAuthMessage } = actions;
-export default reducer;
+export default authMessageSlice.reducer;

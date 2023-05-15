@@ -1,18 +1,36 @@
-import { useSelector } from "react-redux"
+import { Col, Container, Image, Row } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router";
+import CheckAvailabilityButton from '../components/CheckAvailabilityButton';
 
 const SelectedBookDetails = () => {
-  const books = useSelector((state) => state.bookSearchResults.books)
+  const books = useSelector((state) => state.bookSearchResults.books);
 
-    // logic to find book in books array by matching the identifier in the url params
+  // logic to find book in books array by matching the identifier in the url params
   const { identifier } = useParams();
-  const isBook = b => b.industryIdentifiers[0].identifier === identifier;
+  const isBook = (b) => b.industryIdentifiers[0].identifier === identifier;
   const book = books.find(isBook);
-  console.log(book);
+  const bookImage = book.imageLinks.smallThumbnail;
 
   return (
-    <h1>Book Details Here</h1>
-  )
-}
+    <Container>
+      <Row>
+        <Col md={6} className="text-center mb-4">
+          <div className="book-image-container">
+            <Image className="book-image" src={bookImage} />
+          </div>
+          <div className="book-info-container">
+            <h3>{book.title}</h3>
+            <div>{book.authors}</div>
+          </div>
+        </Col>
+        <Col md={6} className="mt-4">
+          <div className="book-description mb-4">{book.description}</div>
+          <CheckAvailabilityButton book={book} />
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 
-export default SelectedBookDetails
+export default SelectedBookDetails;

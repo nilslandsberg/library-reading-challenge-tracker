@@ -3,7 +3,7 @@ import { Card, FloatingLabel, Form, Spinner, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { login } from "../features/authUserSlice";
+import { login } from "../features/userAuthSlice";
 import CustomAlert from "../components/CustomAlert";
 import { getReadersAction } from "../features/readerSlice";
 

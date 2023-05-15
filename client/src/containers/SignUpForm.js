@@ -2,7 +2,7 @@ import { Button, Card, Form, FloatingLabel, Spinner} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { signup } from "../features/authUserSlice";
+import { signup } from "../features/userAuthSlice";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CustomAlert from "../components/CustomAlert";
