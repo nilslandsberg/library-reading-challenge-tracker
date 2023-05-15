@@ -10,13 +10,17 @@ const bookSchema = new Schema({
     type: String,
     required: true
   },
-  author: {
+  authors: [{
     type: String,
     required: true,
-  },
+  }],
   pages: {
     type: String,
     required: false
+  },
+  description: {
+    type: String,
+    required: true
   },
   imageUrl: {
     type: String,

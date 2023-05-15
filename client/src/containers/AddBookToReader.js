@@ -1,24 +1,24 @@
-import { useState } from "react"
 import { Dropdown } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
+import { addBookToReaderAction } from "../features/readingChallengeSlice";
 
 const AddBookToReader = ({ book }) => {
   const userReaders = JSON.parse(localStorage.getItem('userReaders'));
-  const [ selectedReader, setSelectedReader ] = useState();
-  console.log(book)
-  const handleSelect = (name, id) => {
+
+  const dispatch = useDispatch();
+
+  const handleSelect = (id) => {
     const requestBody = {
+      id: id,
       title: book.title,
-      author: book.authors,
-      pages: book.pageCount,
+      authors: book.authors,
+      pageCount: book.pageCount.toString(),
       description: book.description,
       imageUrl: book.imageLinks.thumbnail,
-    }
-    console.log(id);
-    console.log(requestBody)
+    };
+    console.log(typeof requestBody.pageCount);
+    dispatch(addBookToReaderAction(requestBody));
   }
-
-  console.log(selectedReader)
 
   return  (
     <Dropdown>
@@ -27,7 +27,7 @@ const AddBookToReader = ({ book }) => {
       </Dropdown.Toggle>
       <Dropdown.Menu>
         {userReaders && userReaders.length > 0 ? userReaders.map((user) => (
-          <Dropdown.Item key={user._id} onClick={() => handleSelect(user.name, user._id)}>{user.name}</Dropdown.Item>
+          <Dropdown.Item key={user._id} onClick={() => handleSelect(user._id)}>{user.name}</Dropdown.Item>
         )) : <div></div>}
       </Dropdown.Menu>
     </Dropdown>  
