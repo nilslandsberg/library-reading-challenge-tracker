@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const bookSchema = new Schema({
-  readerId: {
+  readerIds: [{
     type: Schema.Types.ObjectId,
     ref: 'Reader'
-  },
+  }],
   title: {
     type: String,
     required: true
@@ -26,6 +26,7 @@ const bookSchema = new Schema({
     type: String,
     required: false,
   }
-}, {timestamps: true});
+}, { timestamps: true });
+
 
 module.exports = mongoose.model('Book', bookSchema);

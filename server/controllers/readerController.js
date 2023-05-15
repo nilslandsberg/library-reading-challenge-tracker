@@ -8,7 +8,7 @@ exports.getAllReaders = async (req, res) => {
     const readers = await Reader
       .find({
         userId: req.userData._id
-      });
+      }).populate('books');
     
       if (readers.length === 0) {
         const firstReader = new Reader({
@@ -68,16 +68,48 @@ exports.addBookToReader = async (req, res) => {
     const { title, authors, description, pages, imageUrl } = req.body;
     const readerId = req.params.readerId;
 
-    const newBook = await Book.create({
-      readerId: readerId,
-      title: title,
-      authors: authors,
-      description: description,
-      pages: pages,
-      imageUrl: imageUrl      
-    });
+    // Check if the book already exists
+    const existingBook = await Book.findOne({ title: title, authors: authors });
 
-    res.status(201).json({ newBook: newBook });
+    if (existingBook) {
+      // Book already exists, add the readerId to existing readers
+      if (!existingBook.readerIds.includes(readerId)) {
+        existingBook.readerIds.push(readerId);
+        await existingBook.save();
+      }
+
+      // Update the reader's books field
+      const reader = await Reader.findById(readerId);
+      if (reader) {
+        if (!reader.books.includes(existingBook._id)) {
+          reader.books.push(existingBook._id);
+          await reader.save();
+        }
+      }
+
+      res.status(200).json({ message: 'Book already exists. Added readerId to existing book.' });
+    } else {
+      // Book doesn't exist, create a new book with the readerId
+      const newBook = await Book.create({
+        readerIds: [readerId],
+        title: title,
+        authors: authors,
+        description: description,
+        pages: pages,
+        imageUrl: imageUrl
+      });
+
+      // Update the reader's books field
+      const reader = await Reader.findById(readerId);
+      if (reader) {
+        if (!reader.books.includes(newBook._id)) {
+          reader.books.push(newBook._id);
+          await reader.save();
+        }
+      }
+
+      res.status(201).json({ newBook: newBook });
+    }
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
