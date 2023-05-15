@@ -21,8 +21,8 @@ const readerSchema = new Schema({
   },
   books: [
     {
-    type: String,
-    ref: 'Books'
+    type: Schema.Types.ObjectId,
+    ref: 'Book'
     }
   ]
 }, {timestamps: true});

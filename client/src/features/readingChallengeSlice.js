@@ -12,6 +12,7 @@ export const addBookToReaderAction = createAsyncThunk("book/addToReader", async(
     const response = await axios.post(API_URL + id, { title: title, authors: authors, description: description, pages: pageCount, imageUrl: imageUrl }, authHeader());
     return response;
   } catch (error) {
+    console.log(error)
     if (!error?.response) {
       throw error;
     }

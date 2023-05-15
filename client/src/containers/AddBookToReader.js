@@ -16,7 +16,6 @@ const AddBookToReader = ({ book }) => {
       description: book.description,
       imageUrl: book.imageLinks.thumbnail,
     };
-    console.log(typeof requestBody.pageCount);
     dispatch(addBookToReaderAction(requestBody));
   }
 
