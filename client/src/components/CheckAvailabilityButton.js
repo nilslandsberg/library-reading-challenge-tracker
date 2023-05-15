@@ -7,8 +7,9 @@ const CheckAvailabilityButton = ({ book }) => {
   const handleClick = () => {
     // convert book title and authors into search parameters for the local library website
     const searchParameters = book.title.toLowerCase().split(' ').join('%20') + '%20' + book.authors[0].toLowerCase().split(' ').join('%20');
-    console.log(searchParameters)
+    // insert search parameters into library search url
     const librarySearchUrl = `https://vienna.tlcdelivers.com/?config=default#section=search&term=${searchParameters}&page=0&sortKey=Relevancy&db=ls2pac&branchFilters=[%221%22,%222%22]&facetFilters=[]&audience=[]`
+    // open the librarySearchUrl in a new browswer tab
     window.open(librarySearchUrl, "_blank");
   }
   return (

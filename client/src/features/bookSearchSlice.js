@@ -62,8 +62,10 @@ const bookSearchSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    // fulfilled searches include logic to return only books with ISBN numbers
     builder.addCase(searchBooksByTitle.fulfilled, (state, action) => {
-      state.books = action.payload;
+      const booksWithISBN = action.payload.filter(book => book.industryIdentifiers && book.industryIdentifiers.length > 0);
+      state.books = booksWithISBN;
       state.isLoading = false;
       state.error = undefined;
     });
@@ -75,7 +77,8 @@ const bookSearchSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(searchBooksByAuthor.fulfilled, (state, action) => {
-      state.books = action.payload;
+      const booksWithISBN = action.payload.filter(book => book.industryIdentifiers && book.industryIdentifiers.length > 0);
+      state.books = booksWithISBN;
       state.isLoading = false;
       state.error = undefined;
     });
@@ -87,7 +90,8 @@ const bookSearchSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(searchBooksByKeyword.fulfilled, (state, action) => {
-      state.books = action.payload;
+      const booksWithISBN = action.payload.filter(book => book.industryIdentifiers && book.industryIdentifiers.length > 0);
+      state.books = booksWithISBN;
       state.isLoading = false;
       state.error = undefined;
     });

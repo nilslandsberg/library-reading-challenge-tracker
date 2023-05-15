@@ -15,22 +15,23 @@ const BookSearchResults = () => {
       {books && books.length > 0 ? (
         <Container className="d-flex justify-content-center flex-wrap search-results-container">
           {books.map((book, index) => (
-          <Card className="book-card text-center" key={book.industryIdentifiers[0]?.identifier || book.title} onClick={() => handleBookClick(book.industryIdentifiers[0]?.identifier || book.title.split(' ').join('_'))}>
-            {book.imageLinks && book.imageLinks.smallThumbnail ? (
-              <Card.Img className="mb-2" src={book.imageLinks.smallThumbnail} variant="top" />
-            ) : (
-              <span className="m-5">No Image Available</span>
-            )}
-            <Card.Body>
-              <Card.Title>
-                {book.title}
-              </Card.Title>
-              {book.authors && book.authors[0] && (
-                <Card.Text>Author: {book.authors[0]}</Card.Text>
+          <Link to={`/book/${book.industryIdentifiers[0]?.identifier}`} key={book.industryIdentifiers[0]?.identifier} className='custom-link'>
+            <Card className="book-card text-center">
+              {book.imageLinks && book.imageLinks.smallThumbnail ? (
+                <Card.Img className="mb-2" src={book.imageLinks.smallThumbnail} variant="top" />
+              ) : (
+                <span className="m-5">No Image Available</span>
               )}
-            </Card.Body>
-          </Card>
-         
+              <Card.Body>
+                <Card.Title>
+                  {book.title}
+                </Card.Title>
+                {book.authors && book.authors[0] && (
+                  <Card.Text>Author: {book.authors[0]}</Card.Text>
+                )}
+              </Card.Body>
+            </Card>
+          </Link>
           ))}
         </Container> 
       ) : (
