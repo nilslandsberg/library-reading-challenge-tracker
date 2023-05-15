@@ -1,8 +1,23 @@
-import { Card } from "react-bootstrap"
-import { useSelector } from "react-redux"
+import { useEffect } from 'react';
+import { Card } from 'react-bootstrap';
+import { useSelector, useDispatch } from 'react-redux';
 
 const MyReaders = () => {
-  const userReaders = useSelector((state) => state.userReaders.readers)
+  const userReaders = useSelector((state) => state.userReaders.readers);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // Load userReaders from Local Storage on component mount
+    const storedUserReaders = localStorage.getItem('userReaders');
+    if (storedUserReaders) {
+      dispatch({ type: 'userReaders/setReaders', payload: JSON.parse(storedUserReaders) });
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    // Save userReaders to Local Storage whenever it changes
+    localStorage.setItem('userReaders', JSON.stringify(userReaders));
+  }, [userReaders]);
 
   return (
     <>
@@ -25,7 +40,7 @@ const MyReaders = () => {
         <div></div>
       )}
     </>
-  )
-}
+  );
+};
 
-export default MyReaders
+export default MyReaders;
