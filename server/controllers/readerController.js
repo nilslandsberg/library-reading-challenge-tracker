@@ -1,4 +1,5 @@
 const Reader = require('../models/readerModel');
+const Book = require('../models/bookModel')
 
 
 // GET - get all user's Readers
@@ -56,6 +57,27 @@ exports.addReader = async (req, res) => {
     });
 
     res.status(201).json({ newReader: newReader });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
+// POST - adds book to reader
+exports.addBookToReader = async (req, res) => {
+  try {
+    const { title, authors, description, pages, imageUrl } = req.body;
+    const readerId = req.params.readerId;
+
+    const newBook = await Book.create({
+      readerId: readerId,
+      title: title,
+      authors: authors,
+      description: description,
+      pages: pages,
+      imageUrl: imageUrl      
+    });
+
+    res.status(201).json({ newBook: newBook });
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
