@@ -1,9 +1,9 @@
 import { Dropdown } from "react-bootstrap";
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { addBookToReaderAction } from "../features/readingChallengeSlice";
 
 const AddBookToReader = ({ book }) => {
-  const userReaders = JSON.parse(localStorage.getItem('userReaders'));
+  const userReaders = useSelector((state) => state.userReaders.readers)
 
   const dispatch = useDispatch();
 

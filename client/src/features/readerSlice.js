@@ -6,9 +6,10 @@ const API_URL = "http://localhost:8000/api/readers/"
 
 export const addReaderAction = createAsyncThunk("reader/add", async(data, rejectWithValue) => {
   const { name, age, avatar } = data;
+
   try {
     const response = await axios.post(API_URL, { name: name, age: age, avatar: avatar }, authHeader());
-    return response;
+    return response.data;
   } catch (error) {
     if (!error?.response) {
       throw error;
@@ -41,7 +42,7 @@ const readerSlice = createSlice({
     builder.addCase(addReaderAction.fulfilled, (state, action) => {
       state.error = undefined;
       return {
-        readers: [...state.readers, action.payload.data.newReader]
+        readers: [...state.readers, action.payload.newReader]
       };
     });
     builder.addCase(addReaderAction.rejected, (state, action) => {

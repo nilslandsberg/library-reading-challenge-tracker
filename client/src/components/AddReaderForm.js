@@ -16,7 +16,7 @@ import harleyQuinn from '../files/avatars/4043270_avatar_joker_squad_suicide_wom
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addReaderAction } from "../features/readerSlice";
-import ModalContext from "./ModalContext";
+import ModalContext from "../contexts/ModalContext";
 
 
 const AddReaderForm = () => {
@@ -26,59 +26,21 @@ const AddReaderForm = () => {
 
   const dispatch = useDispatch();
 
+  // avatars from 'https://www.iconfinder.com/iconsets/avatars-xmas-giveaway' pack by Laura Reen
   const avatars = [ 
-    {
-      label: "Ponytail Girl",
-      path: ponyTailGirl
-    },
-    {
-      label: "Pigtail Girl",
-      path: pigTailGirl
-    },
-    {
-      label: "Hat Boy",
-      path: hatBoy
-    },
-    {
-      label: "Smiling Boy",
-      path: smilingBoy
-    },
-    {
-      label: "Spiked Hair Boy",
-      path: spikedHairBoy
-    },
-    {
-      label: "Batman",
-      path: batman
-    },
-    {
-      label: "Harley Quinn",
-      path: harleyQuinn
-    },
-    {
-      label: "Screaming Avocado",
-      path: screamingAvocado
-    },
-    {
-      label: "Cactus Pirate",
-      path: cactusPirate
-    },
-    {
-      label: "Coffee Zorro",
-      path: coffeeZorro
-    },
-    {
-      label: "Sloth",
-      path: sloth
-    },
-    {
-      label: "Zombie",
-      path: zombie
-    },
-    {
-      label: "Alien",
-      path: alien
-    }
+    ponyTailGirl, 
+    pigTailGirl, 
+    hatBoy, 
+    smilingBoy, 
+    spikedHairBoy, 
+    batman, 
+    harleyQuinn, 
+    screamingAvocado, 
+    cactusPirate, 
+    coffeeZorro, 
+    sloth, 
+    zombie, 
+    alien
   ];
 
   const handleFormSubmit = (data) => {
@@ -96,8 +58,8 @@ const AddReaderForm = () => {
     <>
       <Form onSubmit={handleSubmit(handleFormSubmit)}>
         <Carousel 
-          activeIndex={avatars.findIndex((avatar) => avatar.path === selectedAvatar)}
-          onSelect={(selectedIndex) => setSelectedAvatar(avatars[selectedIndex].path)}
+          activeIndex={avatars.findIndex((avatar) => avatar === selectedAvatar)}
+          onSelect={(selectedIndex) => setSelectedAvatar(avatars[selectedIndex])}
           style={{ marginTop: "20px" }}
           interval={null}
           slide={true}
@@ -106,7 +68,7 @@ const AddReaderForm = () => {
         >
           {avatars.map((avatar, index) => (
             <Carousel.Item key={index}>
-              <Image className="selected-avatar" src={avatar.path} alt={avatar.label} />
+              <Image className="selected-avatar" src={avatar} alt="No Image Available" />
             </Carousel.Item>
           ))}
         </Carousel>

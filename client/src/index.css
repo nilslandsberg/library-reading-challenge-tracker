@@ -17,12 +17,28 @@ code {
   padding-left: 20px
 }
 
-.red-required {
-  color: red
+.navbar-links-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.readers {
-  padding-top: 10px;
+.navbar-link {
+  color: grey !important;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.navbar-link:hover,
+.navbar-link:focus {
+  color: #fff !important;
+  outline: none;
+}
+
+.red-required {
+  color: red
 }
 
 .carousel-control-next,
@@ -35,15 +51,42 @@ code {
   width: 100%
 }
 
-.readers .reader-card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.2);
+.my-readers {
+  padding: 10px;
+  gap: 15px;
+  justify-content: start;
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-wrap: nowrap !important;
 }
 
-.readers .reader-card {
+.reader-avatar {
+  height: 200px;
+  width: 100%;
+}
+
+.readers {
+  padding-top: 10px;
+}
+
+.readers .reader-card-link {
+  flex-shrink: 0;
   width: 15rem;
-  margin: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.readers .reader-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+}
+
+.reader-card {
+  flex: 0 0 calc(33.33% - 10px);
+  width: 15rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.1);
   border: 1px solid grey;
+  transition: transform 0.3s ease;
 }
 
 .card-title {
@@ -52,6 +95,7 @@ code {
 
 .book-card:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
 }
 
 .book-card {
@@ -62,6 +106,7 @@ code {
   border: 1px solid grey;
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s ease;
 }
 
 .book-card .card-img-top {
@@ -85,9 +130,9 @@ code {
   align-items: center;
 }
 
-.custom-link {
-  color: inherit; /* Use the parent element's color */
-  text-decoration: none; /* Remove underline */
+.book-link {
+  text-decoration: none;
+  color: inherit;
 }
 
 .search-results-container {

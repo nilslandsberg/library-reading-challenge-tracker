@@ -15,12 +15,12 @@ const AuthHomePage = () => {
   return (
     <>
         <Container className="readers">
-          <Row>
-            <h3>My Readers</h3>
+          <Row className="align-items-center">
+            <h3>My Readers <span><AddReaderButton /></span></h3>
+            
           </Row>
-          <Row className="my-readers flex-nowrap overflow-auto">
+          <Row className="my-readers">
             <MyReaders />
-            <AddReaderButton />
           </Row>
         </Container>
         <hr />
