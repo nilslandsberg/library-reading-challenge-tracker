@@ -1,6 +1,9 @@
 import { Table } from "react-bootstrap";
 
 const ReaderBooksTable = ({ books, reader }) => {
+  const handleClick = (book) => {
+    console.log(book);
+  }
 
   return (
     <Table striped bordered hover>
@@ -15,7 +18,7 @@ const ReaderBooksTable = ({ books, reader }) => {
       <tbody>
         {books && books.length > 0 ? (
           books.map((book, index) => (
-            <tr key={index}>
+            <tr onClick={() => handleClick(book)} key={index}>
               <td>{index + 1}</td>
               <td>{book.title}</td>
               <td>{book.authors[0]}</td>

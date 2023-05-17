@@ -12,60 +12,21 @@ import zombie from '../files/avatars/4043266_avatar_dead_monster_zombie_icon.svg
 import alien from '../files/avatars/4043268_alien_avatar_space_ufo_icon.svg';
 import harleyQuinn from '../files/avatars/4043270_avatar_joker_squad_suicide_woman_icon.svg';
 
-// avatars from 'https://www.iconfinder.com/iconsets/avatars-xmas-giveaway' pack by Laura Reen
- const avatars = [ 
-  {
-    label: "Ponytail Girl",
-    path: ponyTailGirl
-  },
-  {
-    label: "Pigtail Girl",
-    path: pigTailGirl
-  },
-  {
-    label: "Hat Boy",
-    path: hatBoy
-  },
-  {
-    label: "Smiling Boy",
-    path: smilingBoy
-  },
-  {
-    label: "Spiked Hair Boy",
-    path: spikedHairBoy
-  },
-  {
-    label: "Batman",
-    path: batman
-  },
-  {
-    label: "Harley Quinn",
-    path: harleyQuinn
-  },
-  {
-    label: "Screaming Avocado",
-    path: screamingAvocado
-  },
-  {
-    label: "Cactus Pirate",
-    path: cactusPirate
-  },
-  {
-    label: "Coffee Zorro",
-    path: coffeeZorro
-  },
-  {
-    label: "Sloth",
-    path: sloth
-  },
-  {
-    label: "Zombie",
-    path: zombie
-  },
-  {
-    label: "Alien",
-    path: alien
-  }
-];
+  // avatars from 'https://www.iconfinder.com/iconsets/avatars-xmas-giveaway' pack by Laura Reen
+  const avatars = [ 
+    ponyTailGirl, 
+    pigTailGirl, 
+    hatBoy, 
+    smilingBoy, 
+    spikedHairBoy, 
+    batman, 
+    harleyQuinn, 
+    screamingAvocado, 
+    cactusPirate, 
+    coffeeZorro, 
+    sloth, 
+    zombie, 
+    alien
+  ];
 
 export default avatars
