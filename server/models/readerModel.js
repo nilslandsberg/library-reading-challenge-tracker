@@ -8,13 +8,9 @@ const readerSchema = new Schema({
   },
   name: {
     type: String,
-    required: true
   },
   age: {
     type: Number,
-    required: true,
-    min: 1,
-    max: 18
   },
   avatar: {
     type: String,

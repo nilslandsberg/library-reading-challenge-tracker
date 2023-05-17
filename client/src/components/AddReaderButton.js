@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Button } from "react-bootstrap"
 import AddChildModal from "./AddReaderModal";
-import ModalContext from "./ModalContext";
+import ModalContext from "../contexts/ModalContext";
 
 const AddReaderButton = () => {
   const [ showModal, setShowModal ] = useState(false);

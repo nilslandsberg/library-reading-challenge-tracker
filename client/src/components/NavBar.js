@@ -1,6 +1,7 @@
 import { Navbar, Container, Nav, Dropdown, NavLink } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import { useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
 import Login from "./Login";
 import SignUp from "./SignUp";
 import UserLogout from "./UserLogout";
@@ -14,7 +15,7 @@ const NavBar = () => {
       return (
         <>
           <Nav.Item>
-            <NavLink href='/search'>Book Search</NavLink>
+            <Link to='/search' className="navbar-link">Book Search</Link>
           </Nav.Item>
           <Dropdown style={{ marginLeft: '10px' }}>
             <Dropdown.Toggle className="nav-dropdowns" variant="light" id="dropdown-logout">
@@ -42,9 +43,8 @@ const NavBar = () => {
           2023 Summer Reading Log
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto"></Nav>
-          <Nav>
+        <Navbar.Collapse className="me-auto justify-content-end" id="responsive-navbar-nav">
+          <Nav className="navbar-links-container">
             {renderLinks()}
           </Nav>
         </Navbar.Collapse>

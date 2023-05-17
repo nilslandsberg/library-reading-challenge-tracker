@@ -7,6 +7,7 @@ import LoginForm from './containers/LoginForm';
 import SignUpForm from './containers/SignUpForm';
 import SearchForBooks from './components/SearchForBook';
 import SelectedBookDetails from './containers/SelectedBookDetails';
+import ReaderDetails from './containers/ReaderDetails';
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path='/signup' element={<SignUpForm />} />
           <Route path='/search' element={<SearchForBooks />} />
           <Route path='/book/:identifier' element={<SelectedBookDetails />} />
+          <Route path='/readers/:readerId' element={<ReaderDetails />} />
         </Routes>  
       </Container>
     </>

@@ -119,6 +119,7 @@ exports.addBookToReader = async (req, res) => {
 exports.updateAge = async (req, res) => {
   try {
     const { readerId } = req.params;
+    // find reader and update age
     const updatedReader = await Reader.findOneAndUpdate(readerId, { age: req.body.age }, { new: true });
 
     if (!updatedReader) {
@@ -143,6 +144,8 @@ exports.deleteOneReader = async (req, res) => {
       return res.status(404).json({ message: 'reader with given id not found' });
     } else {
       const removedReader = await Reader.findByIdAndDelete({ _id: readerId });
+      // find books and remove reader from books associated with readerId
+      // if readerId for book is empty, delete book
       // const deletedBooks = await Book.deleteMany({ readerId: readerId });
     }
     return res.status(200).json({ message: "reader deleted" });
