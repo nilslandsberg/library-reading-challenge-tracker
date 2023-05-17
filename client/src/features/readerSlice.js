@@ -30,6 +30,33 @@ export const getReadersAction = createAsyncThunk("readers/fetch", async(rejectWi
   }
 });
 
+export const updateReaderAction = createAsyncThunk("reader/update", async(data, rejectWithValue) => {
+  const { id, name, age, avatar } = data;
+
+  try {
+    const response = await axios.patch(API_URL + id, { name: name, age: age, avatar: avatar }, authHeader());
+    return response.data;
+  } catch (error) {
+    if (!error?.resposne) {
+      throw error;
+    }
+    return rejectWithValue(error?.response?.data);
+  }
+});
+
+export const deleteReaderAction = createAsyncThunk("reader/delete", async(id, rejectWithValue) => {
+  try {
+    const response = await axios.delete(API_URL + id, authHeader());
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    if (!error?.response) {
+      throw error;
+    }
+    return rejectWithValue(error?.response?.data);
+  }
+});
+
 const initialState = {
   readers: []
 };
@@ -59,6 +86,35 @@ const readerSlice = createSlice({
     builder.addCase(getReadersAction.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action?.payload;
+    });
+    builder.addCase(updateReaderAction.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(updateReaderAction.fulfilled, (state, action) => {
+      state.error = undefined;
+      state.isLoading = false;
+      state.error = undefined;
+      // update reader in the state of the store
+      const { id, name, age, avatar } = action.payload.updatedReader;
+      // locate the reader to update in the state
+      const reader = state.readers.find((reader) => reader._id === id);
+      // if reader is found, update element values
+      if (reader) {
+        reader.name = name;
+        reader.age = age;
+        reader.avatar = avatar;
+      }
+    });
+    builder.addCase(updateReaderAction.rejected, (state, action) => {
+      state.error = action?.payload;
+      state.isLoading = false;
+    });
+    builder.addCase(deleteReaderAction.fulfilled, (state, action) => {
+      state.error = undefined;
+      // remove deleted reader from state in the store
+      state.readers = state.readers.filter(
+        (reader) => reader._id !== action.payload
+      );
     })
   }
 });
