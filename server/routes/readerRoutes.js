@@ -16,4 +16,8 @@ router
   .patch(checkAuth, readerController.updateReader)
   .delete(checkAuth, readerController.deleteOneReader);
 
+router
+  .route('/:readerId/books')
+  .patch(checkAuth, readerController.removeBooksFromReader);
+
 module.exports = router;

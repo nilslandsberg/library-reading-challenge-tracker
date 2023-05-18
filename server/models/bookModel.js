@@ -25,6 +25,10 @@ const bookSchema = new Schema({
   imageUrl: {
     type: String,
     required: false,
+  },
+  isbn: {
+    type: String,
+    required: true,
   }
 }, { timestamps: true });
 

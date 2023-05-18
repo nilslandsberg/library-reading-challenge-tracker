@@ -65,7 +65,7 @@ exports.addReader = async (req, res) => {
 // POST - adds book to reader
 exports.addBookToReader = async (req, res) => {
   try {
-    const { title, authors, description, pages, imageUrl } = req.body;
+    const { title, authors, description, pages, imageUrl, isbn } = req.body;
     const readerId = req.params.readerId;
 
     // Check if the book already exists
@@ -96,7 +96,8 @@ exports.addBookToReader = async (req, res) => {
         authors: authors,
         description: description,
         pages: pages,
-        imageUrl: imageUrl
+        imageUrl: imageUrl,
+        isbn: isbn
       });
 
       // Update the reader's books field
@@ -139,7 +140,7 @@ exports.deleteOneReader = async (req, res) => {
     const { readerId } = req.params;
 
     const reader = await Reader.findOne({ _id: readerId });
-    console.log(reader);
+  
     if (!reader) {
       return res.status(404).json({ message: 'reader with given id not found' });
     } else {
@@ -150,6 +151,33 @@ exports.deleteOneReader = async (req, res) => {
       await Book.deleteMany({ readerIds: { $exists: true, $size: 0 } });
     }
     return res.status(200).json({ message: "reader deleted" });
+  } catch (err) {
+    return res.status(500).json({ message: err });
+  }
+}
+
+// PATCH - delete books from a reader
+exports.removeBooksFromReader = async (req, res) => {
+  try{
+    const { readerId } = req.params;
+    const { bookIds } = req.body;
+
+    const reader = await Reader.findOne({ _id: readerId });
+
+    if (!reader) {
+      return res.status(404).json({ message: 'reader with give id not found'});
+    } else {
+      // remove the bookIds from the reader's book array
+      reader.books = reader.books.filter((bookId) => !bookIds.includes(bookId));
+      // save the updated reader
+      await reader.save();
+
+      // find books and remove reader from books associated with readerId
+      await Book.updateMany({ _id: { $in: bookIds } }, { $pull: { readerIds: readerId } } );
+      // find the books with empty readerIds array and delete them
+      await Book.deleteMany({ readerIds: { $exists: true, $size: 0 } });
+    }
+    return res.status(200).json({ message: "books deleted from reader" });
   } catch (err) {
     return res.status(500).json({ message: err });
   }
