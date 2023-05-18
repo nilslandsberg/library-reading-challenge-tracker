@@ -31,6 +31,8 @@ const SelectedBookDetails = () => {
             <Col xs={6}>
               <CheckAvailabilityButton book={book} />
             </Col>
+          </Row>
+          <Row>
             <Col xs={6} className="text-end">
               <AddBookToReader book={book} />
             </Col>
