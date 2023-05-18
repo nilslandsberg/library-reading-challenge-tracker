@@ -1,5 +1,7 @@
 import axios from "axios";
 import authHeader from "../services/auth-header";
+import { toast } from 'react-toastify';
+
 
 const { createAsyncThunk, createSlice } = require("@reduxjs/toolkit");
 
@@ -18,10 +20,11 @@ export const fetchReaderDetailsAction = createAsyncThunk("readerDetails/fetch", 
 });
 
 export const addBookToReaderAction = createAsyncThunk("book/addToReader", async(data, rejectWithValue) => {
-  const { id, title, authors, description, pageCount, imageUrl } = data;
+  const { id, title, authors, description, pageCount, imageUrl, isbn } = data;
 
   try {
-    const response = await axios.post(API_URL + id, { title: title, authors: authors, description: description, pages: pageCount, imageUrl: imageUrl }, authHeader());
+    const response = await axios.post(API_URL + id, { title: title, authors: authors, description: description, pages: pageCount, imageUrl: imageUrl, isbn: isbn }, authHeader());
+    toast.success("Book added to reader's list successfully"); // Display success message
     return response.data;
   } catch (error) {
     if (!error?.response) {
@@ -30,6 +33,20 @@ export const addBookToReaderAction = createAsyncThunk("book/addToReader", async(
     return rejectWithValue(error?.response?.data);
   }
 });
+
+export const removeBooksFromReaderAction = createAsyncThunk("books/deleteFromReader", async(data, rejectWithValue) => {
+  const { readerId, bookIds } = data;
+  try {
+    const response = await axios.patch(API_URL + readerId + '/books', { bookIds: bookIds }, authHeader());
+    return bookIds;
+  } catch (error) {
+    if (!error?.response) {
+      throw error
+    }
+    console.log(error.response.data)
+    return rejectWithValue(error?.response?.data)
+  }
+})
 
 const initialState = {
   readerDetails: {}
@@ -51,6 +68,12 @@ const readerDetailsSlice = createSlice({
     builder.addCase(fetchReaderDetailsAction.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action?.payload;
+    });
+    builder.addCase(removeBooksFromReaderAction.fulfilled, (state, action) => {
+      const bookIdsToRemove = action.payload;
+      console.log(bookIdsToRemove)
+      state.readerDetails.books = state.readerDetails.books.filter((book) => !bookIdsToRemove.includes(book._id));
+      console.log(state.readerDetails.books);
     })
   }
 });

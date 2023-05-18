@@ -1,14 +1,17 @@
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Table } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import { removeBooksFromReaderAction } from "../features/readerDetailsSlice";
 
 const ReaderBooksTable = () => {
   const reader = useSelector((state) => state.readerDetails.readerDetails);
   const books = reader.books;
 
   const [selectedBooks, setSelectedBooks] = useState([]);
+
+  const dispatch = useDispatch();
 
   const handleBookSelection = (bookId) => {
     setSelectedBooks((prevSelectedBooks) => {
@@ -20,10 +23,16 @@ const ReaderBooksTable = () => {
     });
   };
   
+  const handleClick = () => {
+    console.log('click');
+  }
 
   const handleDelete = () => {
-    // Handle the delete operation with the selected books
-    console.log("Deleting books:", selectedBooks);
+    const requestBody = {
+      readerId: reader._id,
+      bookIds: selectedBooks
+    }
+    dispatch(removeBooksFromReaderAction(requestBody));
   };
 
   return (
@@ -42,7 +51,7 @@ const ReaderBooksTable = () => {
         {books && books.length > 0 ? (
           books.map((book, index) => (
             <tr key={index}>
-              <td>{book.title}</td>
+              <td onClick={handleClick} className="book-title">{book.title}</td>
               <td>{book.authors[0]}</td>
               <td>{book.pages}</td>
               <td className="text-center">

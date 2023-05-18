@@ -60,7 +60,11 @@ const initialState = {
 const bookSearchSlice = createSlice({
   name: "bookSearchResults",
   initialState,
-  reducers: {},
+  reducers: {
+    setSearchResults: (state, action) => {
+      state.books = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     // fulfilled searches include logic to return only books with ISBN numbers
     builder.addCase(searchBooksByTitle.fulfilled, (state, action) => {
