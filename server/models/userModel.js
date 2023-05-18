@@ -5,13 +5,12 @@ const bcrypt = require('bcryptjs');
 
 const userSchema = new Schema({
   username: {
-    type: String,
+    type: String, unique: "That username is already in use",
     required: [true, "Username required"]
   },
   email: {
-    type: String,
+    type: String, unique: "Account already exists with that email",
     required: [true, "Email required"],
-    unique: true,
     lowercase: true,
     validate: [validator.isEmail, "Valid email required"]
   },
