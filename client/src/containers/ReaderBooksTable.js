@@ -1,13 +1,30 @@
-import { Table } from "react-bootstrap";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Button, Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
 const ReaderBooksTable = () => {
   const reader = useSelector((state) => state.readerDetails.readerDetails);
   const books = reader.books;
 
-  const handleClick = (book) => {
-    console.log(book);
-  }
+  const [selectedBooks, setSelectedBooks] = useState([]);
+
+  const handleBookSelection = (bookId) => {
+    setSelectedBooks((prevSelectedBooks) => {
+      if (prevSelectedBooks.includes(bookId)) {
+        return prevSelectedBooks.filter((id) => id !== bookId);
+      } else {
+        return [...prevSelectedBooks, bookId];
+      }
+    });
+  };
+  
+
+  const handleDelete = () => {
+    // Handle the delete operation with the selected books
+    console.log("Deleting books:", selectedBooks);
+  };
 
   return (
     <Table striped bordered hover>
@@ -16,15 +33,25 @@ const ReaderBooksTable = () => {
           <th>Book Title</th>
           <th>Author(s)</th>
           <th>Pages</th>
+          <th className="text-center">
+            <FontAwesomeIcon icon={ faTrashCan } />
+          </th>
         </tr>
       </thead>
       <tbody>
         {books && books.length > 0 ? (
           books.map((book, index) => (
-            <tr onClick={() => handleClick(book)} key={index}>
+            <tr key={index}>
               <td>{book.title}</td>
               <td>{book.authors[0]}</td>
               <td>{book.pages}</td>
+              <td className="text-center">
+                <input
+                  type="checkbox"
+                  checked={selectedBooks.includes(book._id)}
+                  onChange={() => handleBookSelection(book._id)}
+                />
+              </td>
             </tr>
           ))
         ) : (
@@ -33,6 +60,15 @@ const ReaderBooksTable = () => {
           </tr>
         )}
       </tbody>
+      <tfoot>
+        <tr>
+          <td colSpan="4" className="text-end">
+            <Button variant="secondary" onClick={handleDelete} disabled={selectedBooks.length === 0}>
+              Delete Selected Books
+            </Button>
+          </td>
+        </tr>
+      </tfoot>
     </Table>
   );
 };

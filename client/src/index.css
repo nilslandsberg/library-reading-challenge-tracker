@@ -91,6 +91,7 @@ code {
 
 .reader-details-card {
   width: 15rem;
+  height: 330px !important;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.1);
   border: 1px solid grey;
 }
@@ -149,12 +150,12 @@ code {
   align-items: stretch;
 }
 
-.fa-pencil:hover,
-.fa-trash-can:hover {
+.card-footer .fa-pencil:hover,
+.card-footer .fa-trash-can:hover {
   color: blue;
 }
 
-.fa-pencil,
-.fa-trash-can {
+.card-footer .fa-pencil,
+.card-footer .fa-trash-can {
   cursor: pointer;
 }
