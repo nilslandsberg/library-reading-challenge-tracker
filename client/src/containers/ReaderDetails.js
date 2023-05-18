@@ -71,9 +71,13 @@ const ReaderDetails = () => {
                   </UpdateReaderContext.Provider>
                 </Col>
                 <Col lg={9} className="mb-3">
-                  <h3>Total Books Read: {reader.books.length}</h3>
-                  <h3>Total Number of Pages Read: {totalPages}</h3>
+                  <h3>{reader.name}'s Books</h3>
                   <ReaderBooksTable />
+                  <div className="text-end">
+                    <h5>Total Books Read: {reader.books.length}</h5>
+                    <h5>Total Number of Pages Read: {totalPages}</h5>
+                  </div>
+
                 </Col>
               </Row>
             </Container>
