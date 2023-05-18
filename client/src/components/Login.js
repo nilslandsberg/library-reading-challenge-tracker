@@ -6,10 +6,10 @@ const Login = () => {
 
   return (
     <Nav.Item>
-    <Nav.Link href="/login">
-      Login
-    </Nav.Link>
-  </Nav.Item>
+      <Nav.Link href="/login">
+        Login
+      </Nav.Link>
+    </Nav.Item>
   )
 }
 

@@ -13,10 +13,7 @@ router
   .route('/:readerId')
   .get(checkAuth, readerController.getOneReader)
   .post(checkAuth, readerController.addBookToReader)
+  .patch(checkAuth, readerController.updateReader)
   .delete(checkAuth, readerController.deleteOneReader);
-  
-router
-  .route('/:readerId/age')
-  .patch(checkAuth, readerController.updateAge);
 
 module.exports = router;
