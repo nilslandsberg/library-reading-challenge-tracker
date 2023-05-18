@@ -1,6 +1,10 @@
 import { Table } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
-const ReaderBooksTable = ({ books, reader }) => {
+const ReaderBooksTable = () => {
+  const reader = useSelector((state) => state.readerDetails.readerDetails);
+  const books = reader.books;
+
   const handleClick = (book) => {
     console.log(book);
   }

@@ -31,7 +31,7 @@ exports.getAllReaders = async (req, res) => {
 exports.getOneReader = async (req, res) => {
   try {
     const { readerId } = req.params;
-    const reader = await Reader.findOne({ _id: readerId })
+    const reader = await Reader.findOne({ _id: readerId }).populate('books')
     // if need to populate response items, this is where to do it
 
     if (!reader) {
@@ -116,11 +116,11 @@ exports.addBookToReader = async (req, res) => {
 };
 
 // PATCH - update reader's age
-exports.updateAge = async (req, res) => {
+exports.updateReader = async (req, res) => {
   try {
     const { readerId } = req.params;
     // find reader and update age
-    const updatedReader = await Reader.findOneAndUpdate(readerId, { age: req.body.age }, { new: true });
+    const updatedReader = await Reader.findOneAndUpdate(readerId, { name: req.body.name, age: req.body.age, avatar: req.body.avatar }, { new: true });
 
     if (!updatedReader) {
       return res.status(404).json({ 
@@ -139,14 +139,15 @@ exports.deleteOneReader = async (req, res) => {
     const { readerId } = req.params;
 
     const reader = await Reader.findOne({ _id: readerId });
-
+    console.log(reader);
     if (!reader) {
       return res.status(404).json({ message: 'reader with given id not found' });
     } else {
-      const removedReader = await Reader.findByIdAndDelete({ _id: readerId });
+      await Reader.findByIdAndDelete(readerId);
       // find books and remove reader from books associated with readerId
-      // if readerId for book is empty, delete book
-      // const deletedBooks = await Book.deleteMany({ readerId: readerId });
+      await Book.updateMany({ readerIds: readerId }, { $pull: { readerIds: readerId } });
+      // Find the books with empty readerIds array and delete them
+      await Book.deleteMany({ readerIds: { $exists: true, $size: 0 } });
     }
     return res.status(200).json({ message: "reader deleted" });
   } catch (err) {
