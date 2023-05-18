@@ -40,7 +40,7 @@ const NavBar = () => {
     <Navbar bg="dark" variant="dark" expand="md" fixed="top">
       <Container fluid>
         <Navbar.Brand href="/" className="navbar-brand">
-          2023 Summer Reading Log
+          2023 Summer Reading Challenge
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse className="me-auto justify-content-end" id="responsive-navbar-nav">

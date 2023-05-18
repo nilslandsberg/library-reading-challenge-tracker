@@ -13,7 +13,6 @@ const ReaderBooksTable = () => {
     <Table striped bordered hover>
       <thead>
         <tr>
-          <th>Number</th>
           <th>Book Title</th>
           <th>Author(s)</th>
           <th>Pages</th>
@@ -23,7 +22,6 @@ const ReaderBooksTable = () => {
         {books && books.length > 0 ? (
           books.map((book, index) => (
             <tr onClick={() => handleClick(book)} key={index}>
-              <td>{index + 1}</td>
               <td>{book.title}</td>
               <td>{book.authors[0]}</td>
               <td>{book.pages}</td>
