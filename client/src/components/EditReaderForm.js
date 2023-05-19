@@ -68,6 +68,7 @@ const EditReaderForm = () => {
           <Form.Control
             type="text"
             placeholder="First Name"
+            defaultValue={reader.name}
             {...register("name", { maxLength: 13 })} // Apply maxLength validation
             required
           />
@@ -86,7 +87,7 @@ const EditReaderForm = () => {
             </span>
           }
         >
-          <Form.Select defaultValue={reader.age}{...register("age")} required>
+          <Form.Select defaultValue={reader.age} {...register("age")} required>
             <option value="">Select age range</option>
             <option value="Baby">Baby (0-2)</option>
             <option value="Child">Child (3-12)</option>
