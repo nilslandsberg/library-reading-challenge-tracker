@@ -67,8 +67,9 @@ const readerSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(addReaderAction.fulfilled, (state, action) => {
-      state.error = undefined;
       return {
+        ...state,
+        error: undefined,
         readers: [...state.readers, action.payload.newReader]
       };
     });
