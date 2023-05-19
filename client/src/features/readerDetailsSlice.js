@@ -71,7 +71,7 @@ const readerDetailsSlice = createSlice({
     });
     builder.addCase(removeBooksFromReaderAction.fulfilled, (state, action) => {
       const bookIdsToRemove = action.payload;
-      console.log(bookIdsToRemove)
+      // use filter to create new state that excludes books with _ids that match bookIdsToRemove
       state.readerDetails.books = state.readerDetails.books.filter((book) => !bookIdsToRemove.includes(book._id));
       console.log(state.readerDetails.books);
     })
