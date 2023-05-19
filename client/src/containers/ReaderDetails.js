@@ -56,7 +56,7 @@ const ReaderDetails = () => {
                         src={updatedReader.avatar}
                         variant="top"
                       />
-                      <Card.Title>Age: {updatedReader.age}</Card.Title>
+                      <Card.Title>{updatedReader.age}</Card.Title>
                       <Card.Footer className="d-flex justify-content-between">
                         <ReaderContext.Provider value={updatedReader}>
                           <div>
