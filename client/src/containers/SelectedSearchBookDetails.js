@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import CheckAvailabilityButton from '../components/CheckAvailabilityButton';
 import AddBookToReader from './AddBookToReader';
 
-const SelectedBookDetails = () => {
+const SelectedSearchBookDetails = () => {
   const books = useSelector((state) => state.bookSearchResults.books);
 
   // logic to find book in books array by matching the identifier in the url params
@@ -48,4 +48,4 @@ const SelectedBookDetails = () => {
   );
 };
 
-export default SelectedBookDetails;
+export default SelectedSearchBookDetails;

@@ -10,7 +10,7 @@ const readerSchema = new Schema({
     type: String,
   },
   age: {
-    type: Number,
+    type: String,
   },
   avatar: {
     type: String,
