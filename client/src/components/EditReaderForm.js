@@ -26,6 +26,7 @@ const EditReaderForm = () => {
       age: data.age,
       avatar: avatars[selectedAvatar]
     };
+    console.log(requestBody);
     dispatch(updateReaderAction(requestBody));
     const updatedRequest = {...requestBody};
     console.log(updatedRequest);

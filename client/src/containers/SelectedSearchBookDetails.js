@@ -36,7 +36,7 @@ const SelectedSearchBookDetails = () => {
               </Col>
             </Row>
             <Row>
-              <Col>
+              <Col md={8}>
                 <AddBookToReader book={book} />
               </Col>
             </Row>
