@@ -10,14 +10,31 @@ const AddBookToReader = ({ book }) => {
   const dispatch = useDispatch();
 
   const handleAddBook = (data) => {
+    let imageUrl = "";
+
+    if (book.imageLinks && book.imageLinks.thumbnail) {
+      imageUrl = book.imageLinks.thumbnail;
+    } else {
+      imageUrl = book.imageUrl;
+    }
+
+    let isbn = "";
+
+    if (book.industryIdentifiers && book.industryIdentifiers[0].identifier) {
+      isbn = book.industryIdentifiers[0].identifier;
+    } else {
+      isbn = book.isbn;
+    }
+
+    console.log(imageUrl)
     const requestBody = {
       id: data.reader,
       title: book.title,
       authors: book.authors,
-      pageCount: book.pageCount.toString(),
+      pageCount: String(book.pageCount),
       description: book.description,
-      imageUrl: book.imageLinks.thumbnail,
-      isbn: book.industryIdentifiers[0].identifier,
+      imageUrl: imageUrl,
+      isbn: isbn
     };
     dispatch(addBookToReaderAction(requestBody));
     reset();
@@ -42,6 +59,7 @@ const AddBookToReader = ({ book }) => {
           )}
         </Form.Select>
         <Button
+          variant="secondary"
           className="add-book-btn"
           type="submit"
           onClick={handleSubmit(handleAddBook)}
