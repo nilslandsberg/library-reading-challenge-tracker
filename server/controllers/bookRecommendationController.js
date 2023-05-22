@@ -25,7 +25,7 @@ exports.addBookRecommendation = async (req, res) => {
         pages,
         imageUrl,
         isbn,
-        ageGroup: lowercaseAgeGroup,
+        ageGroup,
         recommendations: [{ readerId, text: recommendation }]
       });
       res.status(201).json({ newBookRecommendation });
@@ -39,7 +39,7 @@ exports.getBooksByAgeGroup = async (req, res) => {
   try {
     const { ageGroup } = req.params;
     
-    const books = await BookRecommendation.find({ ageGroup });
+    const books = await BookRecommendation.find({ ageGroup }).populate('recommendations.readerId');
     res.status(200).json({ books });
   } catch (err) {
     return res.status(500).json({ message: err.message });
