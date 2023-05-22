@@ -20,4 +20,8 @@ router
   .route('/:readerId/books')
   .patch(checkAuth, readerController.removeBooksFromReader);
 
+router 
+  .route('/:readerId/reading-time')
+  .patch(checkAuth, readerController.updateReadingTime)
+
 module.exports = router;
