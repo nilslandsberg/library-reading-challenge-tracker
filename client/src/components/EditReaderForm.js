@@ -15,7 +15,7 @@ const EditReaderForm = () => {
   const [ selectedAvatar, setSelectedAvatar ] = useState(() =>
     avatars.findIndex((avatar) => avatar === reader.avatar)
   );
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
   const dispatch = useDispatch();
 
@@ -26,6 +26,7 @@ const EditReaderForm = () => {
       age: data.age,
       avatar: avatars[selectedAvatar]
     };
+    console.log(requestBody);
     dispatch(updateReaderAction(requestBody));
     const updatedRequest = {...requestBody};
     console.log(updatedRequest);
@@ -67,27 +68,33 @@ const EditReaderForm = () => {
         >
           <Form.Control
             type="text"
+            placeholder="First Name"
             defaultValue={reader.name}
-            {...register("name")}
+            {...register("name", { maxLength: 13 })} // Apply maxLength validation
             required
           />
+          {errors.name?.type === "maxLength" && (
+            <span className="text-danger">Maximum 13 characters allowed.</span>
+          )}
         </FloatingLabel>
         <FloatingLabel
           controlId="formBasicAge"
           className="mb-3"
+          maxLength="13"
           label={
             <span>
               <span className="red-required">* </span>
-              Age
+              Age Range
             </span>
           }
         >
-          <Form.Control
-            type="number"
-            defaultValue={reader.age}
-            {...register("age")}
-            required
-          />
+          <Form.Select defaultValue={reader.age} {...register("age")} required>
+            <option value="">Select age range</option>
+            <option value="Baby">Baby (0-2)</option>
+            <option value="Child">Child (3-12)</option>
+            <option value="Teen">Teen (13-18)</option>
+            <option value="Adult">Adult (18+)</option>
+          </Form.Select>
         </FloatingLabel>
         <Button type="submit" variant="primary">
           Submit

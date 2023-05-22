@@ -32,9 +32,10 @@ export const getReadersAction = createAsyncThunk("readers/fetch", async(rejectWi
 
 export const updateReaderAction = createAsyncThunk("reader/update", async(data, rejectWithValue) => {
   const { id, name, age, avatar } = data;
-
+  console.log(id);
   try {
     const response = await axios.patch(API_URL + id, { name: name, age: age, avatar: avatar }, authHeader());
+    console.log(response.data)
     return response.data;
   } catch (error) {
     if (!error?.resposne) {
@@ -67,8 +68,9 @@ const readerSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(addReaderAction.fulfilled, (state, action) => {
-      state.error = undefined;
       return {
+        ...state,
+        error: undefined,
         readers: [...state.readers, action.payload.newReader]
       };
     });
@@ -91,19 +93,22 @@ const readerSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(updateReaderAction.fulfilled, (state, action) => {
-      state.error = undefined;
       state.isLoading = false;
       state.error = undefined;
-      // update reader in the state of the store
       const { id, name, age, avatar } = action.payload.updatedReader;
-      // locate the reader to update in the state
-      const reader = state.readers.find((reader) => reader._id === id);
-      // if reader is found, update element values
-      if (reader) {
-        reader.name = name;
-        reader.age = age;
-        reader.avatar = avatar;
-      }
+      
+      // Create a new array with updated reader
+      state.readers = state.readers.map(reader => {
+        if (reader._id === id) {
+          return {
+            ...reader,
+            name,
+            age,
+            avatar,
+          };
+        }
+        return reader;
+      });
     });
     builder.addCase(updateReaderAction.rejected, (state, action) => {
       state.error = action?.payload;
