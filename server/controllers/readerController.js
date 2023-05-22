@@ -120,8 +120,9 @@ exports.addBookToReader = async (req, res) => {
 exports.updateReader = async (req, res) => {
   try {
     const { readerId } = req.params;
-    // find reader and update age
-    const updatedReader = await Reader.findOneAndUpdate(readerId, { name: req.body.name, age: req.body.age, avatar: req.body.avatar }, { new: true });
+    console.log(readerId)
+    // find reader and update fields
+    const updatedReader = await Reader.findOneAndUpdate({ _id: readerId }, { name: req.body.name, age: req.body.age, avatar: req.body.avatar }, { new: true });
 
     if (!updatedReader) {
       return res.status(404).json({ 

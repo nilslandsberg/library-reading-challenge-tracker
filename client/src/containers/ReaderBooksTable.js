@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { removeBooksFromReaderAction } from "../features/readerDetailsSlice";
 
-const ReaderBooksTable = () => {
-  const reader = useSelector((state) => state.readerDetails.readerDetails);
+const ReaderBooksTable = ({ updatedReader }) => {
+  const reader = updatedReader;
+  
   const books = reader.books;
 
   const [selectedBooks, setSelectedBooks] = useState([]);

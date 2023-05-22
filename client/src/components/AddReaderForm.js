@@ -10,7 +10,7 @@ import avatars from "./AvatarData";
 
 const AddReaderForm = () => {
   const [ selectedAvatar, setSelectedAvatar ] = useState(ponyTailGirl);
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const handleCloseModal = useContext(ModalContext)
 
   const dispatch = useDispatch();
@@ -21,6 +21,7 @@ const AddReaderForm = () => {
       age: data.age,
       avatar: selectedAvatar
     };
+    console.log(requestBody)
     dispatch(addReaderAction(requestBody));
     handleCloseModal();
     reset();
@@ -53,15 +54,30 @@ const AddReaderForm = () => {
             First Name
           </span>
         }>
-          <Form.Control type="text" placeholder="First Name" {...register("name")} required />
+          <Form.Control
+            type="text"
+            placeholder="First Name"
+            {...register("name", { maxLength: 13 })} // Apply maxLength validation
+            required
+          />
+          {errors.name?.type === "maxLength" && (
+            <span className="text-danger">Maximum 13 characters allowed.</span>
+          )}
         </FloatingLabel>
+
         <FloatingLabel controlId="formBasicAge" className="mb-3" label={
-              <span>
-                <span className="red-required">* </span>
-                Age
-              </span>
-            }>
-              <Form.Control type="number" placeholder="Age" {...register("age")} required />
+          <span>
+            <span className="red-required">*</span>
+            Age Range
+          </span>
+        }>
+          <Form.Select {...register("age")} required>
+            <option value="">Select age range</option>
+            <option value="Baby">Baby (0-2)</option>
+            <option value="Child">Child (3-12)</option>
+            <option value="Teen">Teen (13-18)</option>
+            <option value="Adult">Adult (18+)</option>
+          </Form.Select>
         </FloatingLabel>
         <Button type="submit" variant="primary">Submit</Button>
       </Form>

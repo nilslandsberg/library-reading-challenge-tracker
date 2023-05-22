@@ -6,7 +6,7 @@ import HomePage from './containers/HomePage';
 import LoginForm from './containers/LoginForm';
 import SignUpForm from './containers/SignUpForm';
 import SearchForBooks from './components/SearchForBook';
-import SelectedBookDetails from './containers/SelectedBookDetails';
+import SelectedBookDetails from './containers/SelectedSearchBookDetails';
 import ReaderDetails from './containers/ReaderDetails';
 
 const App = () => {

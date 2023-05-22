@@ -56,7 +56,7 @@ const ReaderDetails = () => {
                         src={updatedReader.avatar}
                         variant="top"
                       />
-                      <Card.Title>Age: {updatedReader.age}</Card.Title>
+                      <Card.Title>{updatedReader.age}</Card.Title>
                       <Card.Footer className="d-flex justify-content-between">
                         <ReaderContext.Provider value={updatedReader}>
                           <div>
@@ -71,8 +71,8 @@ const ReaderDetails = () => {
                   </UpdateReaderContext.Provider>
                 </Col>
                 <Col lg={9} className="mb-3">
-                  <h3>{reader.name}'s Books</h3>
-                  <ReaderBooksTable />
+                  <h3>{updatedReader.name}'s Books</h3>
+                  <ReaderBooksTable updatedReader={updatedReader}/>
                   <div className="text-end">
                     <h5>Total Books Read: {reader.books.length}</h5>
                     <h5>Total Number of Pages Read: {totalPages}</h5>
