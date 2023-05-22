@@ -10,7 +10,9 @@ const API_URL = "http://localhost:8000/api/books/"
 // GET - get book recommendations by age group
 export const fetchBookRecommendationsByAgeGroupAction = createAsyncThunk("bookRecommedationsByAgeGroup/fetch", async(ageGroup, rejectWithValue) => {
   try {
-    const response = await axios.get(API_URL + ageGroup, authHeader());
+    console.log(ageGroup)
+    const response = await axios.get(API_URL + 'age-group/' + ageGroup, authHeader());
+    console.log(response.data);
     return response.data
   } catch (error) {
     if (!error?.response) {
@@ -23,7 +25,7 @@ export const fetchBookRecommendationsByAgeGroupAction = createAsyncThunk("bookRe
 // POST - add book recommendation
 export const addBookRecommendationAction = createAsyncThunk("bookRecommendation/add", async(data, rejectWithValue) => {
   const { title, authors, description, pageCount, imageUrl, isbn, ageGroup, recommendation, readerId } = data;
-
+  console.log(data);
   try {
     const response = await axios.post(API_URL, { title: title, authors: authors, description: description, pages: pageCount, imageUrl: imageUrl, isbn: isbn, ageGroup: ageGroup, recommendation: recommendation, readerId: readerId }, authHeader());
     toast.success("Book recommendation added!"); // Display success message
@@ -49,7 +51,7 @@ const bookRecommendationSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(fetchBookRecommendationsByAgeGroupAction.fulfilled, (state, action) => {
-      state.recommendations = action.payload;
+      state.recommendations = action.payload.books
       state.isLoading = false;
       state.error = undefined;
     });

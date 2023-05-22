@@ -9,6 +9,7 @@ import SearchForBooks from './components/SearchForBook';
 import SelectedBookDetails from './containers/SelectedSearchBookDetails';
 import ReaderDetails from './containers/ReaderDetails';
 import ReaderBookDetails from './containers/ReaderBookDetails';
+import RecommendedBookDetails from './containers/RecommendedBookDetails';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
           <Route path='/book/:identifier' element={<SelectedBookDetails />} />
           <Route path='/readers/:readerId' element={<ReaderDetails />} />
           <Route path='/readers/:readerId/book/:identifier' element={<ReaderBookDetails />} />
+          <Route path='/readers/:readerId/recommendedbook/:identifier' element={<RecommendedBookDetails />} />
         </Routes>  
       </Container>
     </>

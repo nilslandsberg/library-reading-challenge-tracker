@@ -5,15 +5,14 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CheckAvailabilityButton from '../components/CheckAvailabilityButton';
 import AddBookToReader from './AddBookToReader';
-import RecommendBookButton from './RecommendBookButton';
 import GoBackToReaderDetailsButton from "./GoBackToReaderDetailsButton";
 
-const SelectedSearchBookDetails = () => {
-  const readerBooks = useSelector((state) => state.readerDetails.readerDetails.books);
+const RecommendedBookDetails = () => {
+  const recommendedBooks = useSelector((state) => state.bookRecommendations.recommendations);
 
   const { identifier } = useParams();
-
-  const selectedBook = readerBooks.filter(book => book.isbn.includes(identifier));
+  console.log(recommendedBooks)
+  const selectedBook = recommendedBooks.filter(book => book.isbn.includes(identifier));
   const book = selectedBook[0]
   
   return (
@@ -32,11 +31,8 @@ const SelectedSearchBookDetails = () => {
           <Col md={6}>
             <div className="book-description mb-4">{book.description}</div>
             <Row>
-              <Col>
+              <Col className="d-flex justify-content-center">
                 <CheckAvailabilityButton book={book} />
-              </Col>
-              <Col className="d-flex justify-content-end">
-                <RecommendBookButton book={book} />
               </Col>
             </Row>
             <Row>
@@ -53,4 +49,4 @@ const SelectedSearchBookDetails = () => {
   );
 };
 
-export default SelectedSearchBookDetails;
+export default RecommendedBookDetails;
