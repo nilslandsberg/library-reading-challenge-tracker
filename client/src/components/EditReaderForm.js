@@ -26,10 +26,10 @@ const EditReaderForm = () => {
       age: data.age,
       avatar: avatars[selectedAvatar]
     };
-    console.log(requestBody);
     dispatch(updateReaderAction(requestBody));
+
     const updatedRequest = {...requestBody};
-    console.log(updatedRequest);
+    // pass updatedRequest through handleUpdatedReader function to update reader details for ReaderDetails component
     handleUpdatedReader(updatedRequest);
     handleCloseModal();
     reset();

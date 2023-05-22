@@ -4,10 +4,7 @@ const BookRecommendation = require('../models/bookRecommendationModel');
 // POST - add a book recommendation
 exports.addBookRecommendation = async (req, res) => {
   try {
-    const { title, authors, pages, description, imageUrl, isbn, ageGroup, recommendation, readerId } = req.body;
-
-    // Convert ageGroup to lowercase
-    const lowercaseAgeGroup = ageGroup.toLowerCase(); 
+    const { title, authors, pages, description, imageUrl, isbn, ageGroup, recommendation, readerId } = req.body; 
 
     // Check if the book already exists in the recommendation list
     const existingBookRecommendation = await BookRecommendation.findOne({ title, authors });
