@@ -6,7 +6,7 @@ import ModalContext from "../contexts/ModalContext";
 
 const RecommendBookForm = () => {
   const reader = useSelector((state) => state.readerDetails.readerDetails);
-  const { handleCloseModal, book } = useContext(ModalContext);
+  const { handleHideModal, book } = useContext(ModalContext);
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const RecommendBookForm = () => {
       readerId: reader._id
     };
     console.log(requestBody);
-    handleCloseModal();
+    handleHideModal();
     reset();
   };
 
