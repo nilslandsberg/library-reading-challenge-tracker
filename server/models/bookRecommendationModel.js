@@ -26,6 +26,10 @@ const bookRecommendationSchema = new Schema({
     type: String,
     required: true
   },
+  ageGroup: {
+    type: String,
+    required: true
+  },
   recommendations: [
     {
       readerId: {
