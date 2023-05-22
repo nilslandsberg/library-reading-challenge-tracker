@@ -8,6 +8,7 @@ import SignUpForm from './containers/SignUpForm';
 import SearchForBooks from './components/SearchForBook';
 import SelectedBookDetails from './containers/SelectedSearchBookDetails';
 import ReaderDetails from './containers/ReaderDetails';
+import ReaderBookDetails from './containers/ReaderBookDetails';
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           <Route path='/search' element={<SearchForBooks />} />
           <Route path='/book/:identifier' element={<SelectedBookDetails />} />
           <Route path='/readers/:readerId' element={<ReaderDetails />} />
+          <Route path='/readers/:readerId/book/:identifier' element={<ReaderBookDetails />} />
         </Routes>  
       </Container>
     </>
