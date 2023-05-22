@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CheckAvailabilityButton from '../components/CheckAvailabilityButton';
 import AddBookToReader from './AddBookToReader';
-import RecommendBook from './RecommendBook';
+import RecommendBookButton from './RecommendBookButton';
 
 const SelectedSearchBookDetails = () => {
   const readerBooks = useSelector((state) => state.readerDetails.readerDetails.books);
@@ -34,12 +34,12 @@ const SelectedSearchBookDetails = () => {
               <Col>
                 <CheckAvailabilityButton book={book} />
               </Col>
-              <Col>
-                <RecommendBook book={book} />
+              <Col className="d-flex justify-content-end">
+                <RecommendBookButton book={book} />
               </Col>
             </Row>
             <Row>
-              <Col md={8}>
+              <Col className="d-flex justify-content-center">
                 <AddBookToReader book={book} />
               </Col>
             </Row>

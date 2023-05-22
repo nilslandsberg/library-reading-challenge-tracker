@@ -21,7 +21,6 @@ const AddReaderForm = () => {
       age: data.age,
       avatar: selectedAvatar
     };
-    console.log(requestBody)
     dispatch(addReaderAction(requestBody));
     handleCloseModal();
     reset();
