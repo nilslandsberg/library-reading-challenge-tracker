@@ -1,4 +1,4 @@
-import { Container, Row } from "react-bootstrap"
+import { Col, Container, Row } from "react-bootstrap"
 import MyReaders from "../containers/MyReaders"
 import AddReaderButton from "./AddReaderButton"
 import { useEffect } from "react";
@@ -15,16 +15,17 @@ const AuthHomePage = () => {
   return (
     <>
         <Container className="readers">
-          <Row className="align-items-center">
-            <h3>My Readers <span><AddReaderButton /></span></h3>
-            
+          <Row className="align-items-center justify-content-between">
+            <Col>
+              <h3>My Readers</h3>
+            </Col>
+            <Col className="d-flex justify-content-end">
+              <AddReaderButton />
+            </Col>
           </Row>
           <Row className="my-readers">
             <MyReaders />
           </Row>
-        </Container>
-        <hr />
-        <Container className="reccomended-books">
         </Container>
       </> 
   )

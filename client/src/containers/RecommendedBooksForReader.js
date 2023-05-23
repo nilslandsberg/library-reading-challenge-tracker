@@ -1,16 +1,24 @@
 import { Card, Container, Row } from "react-bootstrap";
 import LoadingSpinner from "../components/LoadingSpinner";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import { fetchBookRecommendationsByAgeGroupAction } from "../features/bookRecommendationSlice";
 
 const RecommendedBooksForReader = ({ updatedReader }) => {
   const books = useSelector((state) => state.bookRecommendations.recommendations);
-  const isLoading = useSelector((state) => state.bookSearchResults.isLoading);
+  const isLoading = useSelector((state) => state.bookRecommendations.isLoading);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('books updated')
-  }, [books])
+    if (updatedReader && Object.keys(updatedReader).length > 0) {
+      console.log(updatedReader)
+      const age = updatedReader.age.toLowerCase();
+      dispatch(fetchBookRecommendationsByAgeGroupAction(age))
+    }
+  }, [dispatch, updatedReader.age]);
+
   return (
     <>
       { updatedReader.age === "Child" ? (
