@@ -74,7 +74,7 @@ const ReaderDetails = () => {
                   </Col>
                   <Col lg={9} className="mb-3">
                     <h3>{updatedReader.name}'s Books</h3>
-                    <ReaderBooksTable updatedReader={updatedReader}/>
+                    <ReaderBooksTable updatedReader={updatedReader} />
                     <div className="text-end">
                       <h5>Total Books Read: {reader.books.length}</h5>
                       <h5>Total Number of Pages Read: {totalPages}</h5>
@@ -83,7 +83,7 @@ const ReaderDetails = () => {
                 </Row>
               </Container>
               <hr />
-              <RecommendedBooksForReader />
+              <RecommendedBooksForReader updatedReader={updatedReader} />
             </>
           )}
         </>

@@ -32,7 +32,7 @@ export const getReadersAction = createAsyncThunk("readers/fetch", async(rejectWi
 
 export const updateReaderAction = createAsyncThunk("reader/update", async(data, rejectWithValue) => {
   const { id, name, age, avatar } = data;
-  console.log(id);
+
   try {
     const response = await axios.patch(API_URL + id, { name: name, age: age, avatar: avatar }, authHeader());
     console.log(response.data)

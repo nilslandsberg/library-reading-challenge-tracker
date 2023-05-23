@@ -1,15 +1,16 @@
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Table } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { removeBooksFromReaderAction } from "../features/readerDetailsSlice";
 
 const ReaderBooksTable = ({ updatedReader }) => {
+  const readerDetails = useSelector((state) => state.readerDetails.readerDetails);
   const reader = updatedReader;
   
-  const books = reader.books;
+  const books = readerDetails.books;
 
   const [selectedBooks, setSelectedBooks] = useState([]);
 

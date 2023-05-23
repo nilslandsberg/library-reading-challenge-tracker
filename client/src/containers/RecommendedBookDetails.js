@@ -11,7 +11,7 @@ const RecommendedBookDetails = () => {
   const recommendedBooks = useSelector((state) => state.bookRecommendations.recommendations);
 
   const { identifier } = useParams();
-  console.log(recommendedBooks)
+
   const selectedBook = recommendedBooks.filter(book => book.isbn.includes(identifier));
   const book = selectedBook[0]
   
