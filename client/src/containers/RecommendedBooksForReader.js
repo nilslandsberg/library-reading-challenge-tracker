@@ -2,11 +2,15 @@ import { Card, Container, Row } from "react-bootstrap";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const RecommendedBooksForReader = ({ updatedReader }) => {
   const books = useSelector((state) => state.bookRecommendations.recommendations);
   const isLoading = useSelector((state) => state.bookSearchResults.isLoading);
 
+  useEffect(() => {
+    console.log('books updated')
+  }, [books])
   return (
     <>
       { updatedReader.age === "Child" ? (

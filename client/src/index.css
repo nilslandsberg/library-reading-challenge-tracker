@@ -6,7 +6,7 @@ body {
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("./files/backgroundImage/wg_minimal_web_pattern_14.png");
+  background-image: url("./files/images/wg_minimal_web_pattern_14.png");
   background-repeat: repeat;
 }
 
@@ -79,6 +79,10 @@ code {
 .carousel-control-next,
 .carousel-control-prev /*, .carousel-indicators */ {
     filter: invert(100%);
+}
+
+.challenge-logo {
+  height: 400px;
 }
 
 .input-reader-field {
