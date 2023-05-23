@@ -3,12 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { removeBooksFromReaderAction } from "../features/readerDetailsSlice";
 
 const ReaderBooksTable = ({ updatedReader }) => {
+  const readerDetails = useSelector((state) => state.readerDetails.readerDetails);
   const reader = updatedReader;
   
-  const books = reader.books;
+  const books = readerDetails.books;
 
   const [selectedBooks, setSelectedBooks] = useState([]);
 
@@ -23,10 +25,6 @@ const ReaderBooksTable = ({ updatedReader }) => {
       }
     });
   };
-  
-  const handleClick = () => {
-    console.log('click');
-  }
 
   const handleDelete = () => {
     const requestBody = {
@@ -52,7 +50,11 @@ const ReaderBooksTable = ({ updatedReader }) => {
         {books && books.length > 0 ? (
           books.map((book, index) => (
             <tr key={index}>
-              <td onClick={handleClick} className="book-title">{book.title}</td>
+              <td className="book-title">
+                <Link className="book-link" to={`/readers/${reader._id}/book/${book.isbn}`}>
+                  {book.title}
+                </Link>
+              </td>
               <td>{book.authors[0]}</td>
               <td>{book.pages}</td>
               <td className="text-center">

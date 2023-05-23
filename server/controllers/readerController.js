@@ -116,7 +116,7 @@ exports.addBookToReader = async (req, res) => {
   }
 };
 
-// PATCH - update reader's age
+// PATCH - update reader's details
 exports.updateReader = async (req, res) => {
   try {
     const { readerId } = req.params;
@@ -135,6 +135,26 @@ exports.updateReader = async (req, res) => {
   }
 }
 
+// PATCH - update reading time for a specific week
+exports.updateReadingTime = async (req, res) => {
+  try {
+    const { readerId, weekIndex, readingTime } = req.body;
+
+    const reader = await Reader.findById(readerId);
+
+    if (!reader) {
+      return res.status(404).json({ message: 'Reader not found.' });
+    }
+
+    reader.readingTime[weekIndex] = readingTime;
+    await reader.save();
+
+    res.status(200).json({ message: 'Reading time updated successfully.', reader });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
 // DELETE - delete a reader
 exports.deleteOneReader = async (req, res) => {
   try {
@@ -150,6 +170,11 @@ exports.deleteOneReader = async (req, res) => {
       await Book.updateMany({ readerIds: readerId }, { $pull: { readerIds: readerId } });
       // Find the books with empty readerIds array and delete them
       await Book.deleteMany({ readerIds: { $exists: true, $size: 0 } });
+      // Delete the reader's recommendations
+      await BookRecommendation.updateMany(
+        { 'recommendations.readerId': readerId },
+        { $pull: { recommendations: { readerId: readerId } } }
+      );
     }
     return res.status(200).json({ message: "reader deleted" });
   } catch (err) {

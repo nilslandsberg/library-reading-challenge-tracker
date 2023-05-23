@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { Button, Carousel, FloatingLabel, Form, Image } from "react-bootstrap";
 import { updateReaderAction } from "../features/readerSlice";
 import UpdateReaderContext from "../contexts/UpdateReaderContext";
+import { fetchBookRecommendationsByAgeGroupAction } from "../features/bookRecommendationSlice";
 
 const EditReaderForm = () => {
   const reader = useContext(ReaderContext);
@@ -18,18 +19,22 @@ const EditReaderForm = () => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
   const dispatch = useDispatch();
-
-  const handleFormSubmit = (data) => {
+  console.log(reader._id)
+  const handleFormSubmit = async (data) => {
     const requestBody = {
       id: reader._id,
       name: data.name,
       age: data.age,
       avatar: avatars[selectedAvatar]
     };
-    console.log(requestBody);
-    dispatch(updateReaderAction(requestBody));
+
+    await dispatch(updateReaderAction(requestBody))
+    // change age range to lower case for fetchBookRecommendationsByAgeGroupAction
+    const age = data.age.toLowerCase();
+    dispatch(fetchBookRecommendationsByAgeGroupAction(age));
+
     const updatedRequest = {...requestBody};
-    console.log(updatedRequest);
+    // pass updatedRequest through handleUpdatedReader function to update reader details for ReaderDetails component
     handleUpdatedReader(updatedRequest);
     handleCloseModal();
     reset();
