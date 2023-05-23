@@ -16,7 +16,7 @@ const CheckAvailabilityButton = ({ book }) => {
     window.open(librarySearchUrl, "_blank");
   }
   return (
-    <Button variant="secondary" onClick={handleClick}>Is This Book At My Library?</Button>
+    <Button variant="secondary" onClick={handleClick}>Is Book Available At Vienna Library?</Button>
   )
 }
 

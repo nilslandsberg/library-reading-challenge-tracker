@@ -6,6 +6,8 @@ body {
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("./files/backgroundImage/wg_minimal_web_pattern_14.png");
+  background-repeat: repeat;
 }
 
 code {

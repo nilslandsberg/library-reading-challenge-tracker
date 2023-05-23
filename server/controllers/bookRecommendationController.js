@@ -4,10 +4,7 @@ const BookRecommendation = require('../models/bookRecommendationModel');
 // POST - add a book recommendation
 exports.addBookRecommendation = async (req, res) => {
   try {
-    const { title, authors, pages, description, imageUrl, isbn, ageGroup, recommendation, readerId } = req.body;
-
-    // Convert ageGroup to lowercase
-    const lowercaseAgeGroup = ageGroup.toLowerCase(); 
+    const { title, authors, pages, description, imageUrl, isbn, ageGroup, recommendation, readerId } = req.body; 
 
     // Check if the book already exists in the recommendation list
     const existingBookRecommendation = await BookRecommendation.findOne({ title, authors });
@@ -28,7 +25,7 @@ exports.addBookRecommendation = async (req, res) => {
         pages,
         imageUrl,
         isbn,
-        ageGroup: lowercaseAgeGroup,
+        ageGroup,
         recommendations: [{ readerId, text: recommendation }]
       });
       res.status(201).json({ newBookRecommendation });
@@ -42,7 +39,7 @@ exports.getBooksByAgeGroup = async (req, res) => {
   try {
     const { ageGroup } = req.params;
     
-    const books = await BookRecommendation.find({ ageGroup });
+    const books = await BookRecommendation.find({ ageGroup }).populate('recommendations.readerId');
     res.status(200).json({ books });
   } catch (err) {
     return res.status(500).json({ message: err.message });

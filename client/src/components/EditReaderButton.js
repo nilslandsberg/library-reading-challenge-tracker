@@ -12,7 +12,6 @@ const EditReaderButton = () => {
 
   const handleShowModal = () => {
     setShowModal(true);
-    console.log(reader);
   }
 
   const handleHideModal = () => {
