@@ -41,6 +41,12 @@ code {
   object-fit: cover;
 }
 
+.book-description,
+.reader-reviews {
+  max-height: 350px;
+  overflow-y: auto;
+}
+
 .book-image-container {
   margin-bottom: 10px;
 }
@@ -93,10 +99,8 @@ code {
 .my-readers {
   padding: 10px;
   gap: 15px;
-  justify-content: start;
-  overflow-x: auto;
-  overflow-y: hidden;
-  flex-wrap: nowrap !important;
+  justify-content: center;
+  display: grid,
 }
 
 .navbar-brand {
@@ -144,6 +148,9 @@ code {
   transform: scale(1.05);
 }
 
+.reader-book-table {
+  background-color: white;
+}
 .reader-card {
   flex: 0 0 calc(33.33% - 10px);
   width: 15rem;
@@ -157,6 +164,12 @@ code {
   height: 330px !important;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.1);
   border: 1px solid grey;
+}
+
+.reader-reviews {
+  border: 3px solid grey;
+  border-radius: 5px;
+  padding: 10px;
 }
 
 .red-required {
@@ -174,4 +187,8 @@ code {
 .selected-avatar {
   height: 200px;
   width: 100%
+}
+
+.user-circle {
+  height: 75px;
 }

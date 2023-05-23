@@ -54,7 +54,7 @@ const RecommendBookForm = () => {
             Age Group
           </span>
         }>
-          <Form.Select className="mb-3" {...register("ageGroup")} required>
+          <Form.Select className="mb-3" {...register("ageGroup")} defaultValue={reader.age.toLowerCase()} required>
             <option value="">Select an age group</option>
             <option value="baby">Baby</option>
             <option value="child">Child</option>

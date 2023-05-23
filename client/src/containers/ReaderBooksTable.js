@@ -35,7 +35,7 @@ const ReaderBooksTable = ({ updatedReader }) => {
   };
 
   return (
-    <Table striped bordered hover>
+    <Table striped bordered hover className="reader-book-table">
       <thead>
         <tr>
           <th>Book Title</th>
