@@ -15,6 +15,7 @@ const NavBar = () => {
       return (
         <>
           <Nav.Item>
+            <Link to='/' className="navbar-link">My Readers</Link>
             <Link to='/search' className="navbar-link">Book Search</Link>
           </Nav.Item>
           <Dropdown style={{ marginLeft: '10px' }}>
@@ -37,7 +38,7 @@ const NavBar = () => {
     }
   }
   return (
-    <Navbar bg="dark" variant="dark" expand="md" fixed="top">
+    <Navbar className="navbar-gradient" bg="dark" variant="dark" expand="md" fixed="top">
       <Container fluid>
         <Navbar.Brand href="/" className="navbar-brand">
           2023 Summer Reading Challenge

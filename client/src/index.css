@@ -107,6 +107,9 @@ code {
   padding-left: 20px
 }
 
+.navbar-gradient {
+  background: linear-gradient(to left, black, grey) !important;
+}
 .navbar-links-container {
   display: flex;
   justify-content: center;
