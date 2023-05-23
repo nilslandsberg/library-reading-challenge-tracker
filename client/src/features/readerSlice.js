@@ -31,10 +31,10 @@ export const getReadersAction = createAsyncThunk("readers/fetch", async(rejectWi
 });
 
 export const updateReaderAction = createAsyncThunk("reader/update", async(data, rejectWithValue) => {
-  const { id, name, age, avatar } = data;
+  const { _id, name, age, avatar } = data;
 
   try {
-    const response = await axios.patch(API_URL + id, { name: name, age: age, avatar: avatar }, authHeader());
+    const response = await axios.patch(API_URL + _id, { name: name, age: age, avatar: avatar }, authHeader());
     console.log(response.data)
     return response.data;
   } catch (error) {

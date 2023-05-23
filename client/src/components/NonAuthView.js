@@ -1,14 +1,21 @@
+import { Container, Image, Row } from "react-bootstrap";
+import readingChallengeLogo from "../files/images/reading_challenge_logo.png";
+
 const NonAuthView = () => {
   return (
     <>
-    <h1>
-      Welcome to the 2023 Vienna Library Summer Reading Challenge!
-    </h1>
-    <h4>
-      Create an account for your household and track all of the reading done in your home this summer season.
-    </h4>
+      <Container className="d-flex justify-content-center mb-3">
+        <Image className="challenge-logo" src={readingChallengeLogo} />
+      </Container>
+      <Container>
+        <Row className="d-flex justify-content-center">
+          <h4 className="text-center">
+            Create an account for your household and track all of the reading done in your home this summer.
+          </h4>
+        </Row>
+      </Container>
     </>
-  )
+  );
 };
 
-export default NonAuthView
+export default NonAuthView;

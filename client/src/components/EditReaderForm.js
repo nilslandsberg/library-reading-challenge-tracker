@@ -10,19 +10,19 @@ import UpdateReaderContext from "../contexts/UpdateReaderContext";
 import { fetchBookRecommendationsByAgeGroupAction } from "../features/bookRecommendationSlice";
 
 const EditReaderForm = () => {
-  const reader = useContext(ReaderContext);
+  const updatedReader = useContext(ReaderContext);
   const handleCloseModal = useContext(ModalContext);
   const handleUpdatedReader = useContext(UpdateReaderContext);
   const [ selectedAvatar, setSelectedAvatar ] = useState(() =>
-    avatars.findIndex((avatar) => avatar === reader.avatar)
+    avatars.findIndex((avatar) => avatar === updatedReader.avatar)
   );
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
   const dispatch = useDispatch();
-  console.log(reader._id)
+  console.log(updatedReader._id)
   const handleFormSubmit = async (data) => {
     const requestBody = {
-      id: reader._id,
+      _id: updatedReader._id,
       name: data.name,
       age: data.age,
       avatar: avatars[selectedAvatar]
@@ -74,7 +74,7 @@ const EditReaderForm = () => {
           <Form.Control
             type="text"
             placeholder="First Name"
-            defaultValue={reader.name}
+            defaultValue={updatedReader.name}
             {...register("name", { maxLength: 13 })} // Apply maxLength validation
             required
           />
@@ -93,7 +93,7 @@ const EditReaderForm = () => {
             </span>
           }
         >
-          <Form.Select defaultValue={reader.age} {...register("age")} required>
+          <Form.Select defaultValue={updatedReader.age} {...register("age")} required>
             <option value="">Select age range</option>
             <option value="Baby">Baby (0-2)</option>
             <option value="Child">Child (3-12)</option>
