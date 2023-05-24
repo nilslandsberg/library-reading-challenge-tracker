@@ -11,6 +11,7 @@ import { fetchReaderDetailsAction } from "../features/readerDetailsSlice";
 import LoadingSpinner from "../components/LoadingSpinner";
 import RecommendedBooksForReader from "./RecommendedBooksForReader";
 import ReaderTimeLog from "../components/ReaderTimeLog";
+import ReaderTimeLogChart from "../components/ReaderTimeLogChart";
 
 const ReaderDetails = () => {
   const reader = useSelector((state) => state.readerDetails.readerDetails);
@@ -76,6 +77,7 @@ const ReaderDetails = () => {
                   <Col lg={9} className="mb-3">
                     <ReaderContext.Provider value={updatedReader}>
                       <ReaderTimeLog />
+                      <ReaderTimeLogChart />
                     </ReaderContext.Provider>  
                   </Col>
                 </Row>
