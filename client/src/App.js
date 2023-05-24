@@ -18,7 +18,7 @@ const App = () => {
         <NavBar />
       </Container>
       <br />
-      <Container className="md-4 mt-5">
+      <Container className="md-4 pt-5">
         <Routes> 
           <Route exact path='/' element={<HomePage />} />
           <Route path='/login' element={<LoginForm />} />

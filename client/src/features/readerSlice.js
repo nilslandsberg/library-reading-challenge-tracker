@@ -6,7 +6,7 @@ const API_URL = "http://localhost:8000/api/readers/"
 
 export const addReaderAction = createAsyncThunk("reader/add", async(data, rejectWithValue) => {
   const { name, age, avatar } = data;
-
+  console.log(data)
   try {
     const response = await axios.post(API_URL, { name: name, age: age, avatar: avatar }, authHeader());
     return response.data;

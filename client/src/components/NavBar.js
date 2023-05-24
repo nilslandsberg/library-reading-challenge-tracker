@@ -38,7 +38,7 @@ const NavBar = () => {
     }
   }
   return (
-    <Navbar className="navbar-gradient" bg="dark" variant="dark" expand="md" fixed="top">
+    <Navbar className="navbar-custom" bg="dark" variant="dark" expand="md" fixed="top">
       <Container fluid>
         <Navbar.Brand href="/" className="navbar-brand">
           2023 Summer Reading Challenge

@@ -10,6 +10,7 @@ import UpdateReaderContext from "../contexts/UpdateReaderContext";
 import { fetchReaderDetailsAction } from "../features/readerDetailsSlice";
 import LoadingSpinner from "../components/LoadingSpinner";
 import RecommendedBooksForReader from "./RecommendedBooksForReader";
+import ReaderTimeLog from "../components/ReaderTimeLog";
 
 const ReaderDetails = () => {
   const reader = useSelector((state) => state.readerDetails.readerDetails);
@@ -73,14 +74,20 @@ const ReaderDetails = () => {
                     </UpdateReaderContext.Provider>
                   </Col>
                   <Col lg={9} className="mb-3">
-                    <h3>{updatedReader.name}'s Books</h3>
-                    <ReaderBooksTable updatedReader={updatedReader} />
-                    <div className="text-end">
-                      <h5>Total Books Read: {reader.books.length}</h5>
-                      <h5>Total Number of Pages Read: {totalPages}</h5>
-                    </div>
+                    <ReaderContext.Provider value={updatedReader}>
+                      <ReaderTimeLog />
+                    </ReaderContext.Provider>  
                   </Col>
                 </Row>
+              </Container>
+              <hr />
+              <Container>
+                <h3>{updatedReader.name}'s Books</h3>
+                <ReaderBooksTable updatedReader={updatedReader} />
+                <div className="text-end">
+                  <h5>Total Books Read: {reader.books.length}</h5>
+                  <h5>Total Number of Pages Read: {totalPages}</h5>
+                </div>
               </Container>
               <hr />
               <RecommendedBooksForReader updatedReader={updatedReader} />

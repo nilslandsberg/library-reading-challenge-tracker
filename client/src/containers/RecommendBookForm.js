@@ -40,7 +40,7 @@ const RecommendBookForm = () => {
         }>
           <Form.Control
             as="textarea"
-            rows={6}
+            rows={10}
             {...register("recommendation", { minLength: 20 })}
             required
           />

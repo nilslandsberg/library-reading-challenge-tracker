@@ -18,7 +18,7 @@ const AddReaderForm = () => {
   const handleFormSubmit = (data) => {
     const requestBody = {
       name: data.name,
-      ageGroup: data.ageGroup,
+      age: data.age,
       avatar: selectedAvatar
     };
     dispatch(addReaderAction(requestBody));
@@ -70,7 +70,7 @@ const AddReaderForm = () => {
             Age Range
           </span>
         }>
-          <Form.Select {...register("ageGroup")} required>
+          <Form.Select {...register("age")} required>
             <option value="">Select age range</option>
             <option value="Baby">Baby (0-2)</option>
             <option value="Child">Child (3-12)</option>
