@@ -19,6 +19,7 @@ code {
   border-top-left-radius: 0; /* Remove the top-left border radius */
   border-bottom-left-radius: 0; /* Remove the bottom-left border radius */
 }
+
 .book-card:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.2);
   transform: scale(1.05);
@@ -67,6 +68,11 @@ code {
   color: inherit;
 }
 
+.card-book-image {
+  object-fit: cover; 
+  height: 300px !important;
+}
+
 .card-footer .fa-pencil:hover,
 .card-footer .fa-trash-can:hover {
   color: blue;
@@ -107,9 +113,12 @@ code {
   padding-left: 20px
 }
 
-.navbar-gradient {
+.navbar-custom {
+  z-index: 1000;
+  position: relative;
   background: linear-gradient(to left, black, grey) !important;
 }
+
 .navbar-links-container {
   display: flex;
   justify-content: center;
