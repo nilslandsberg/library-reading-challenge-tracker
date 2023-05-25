@@ -9,29 +9,29 @@ ChartJS.register(
   Tooltip, 
   Legend
 )
+
 const AllReadersTimeLogChart = () => {
-  const readers = useSelector((state) => state.userReaders.readers)
-  // array of backgroundColors to assign a unique color to each reader
-  const backgroundColors = ['aqua', 'blue', 'green', 'orange', 'purple']; 
+  const readers = useSelector((state) => state.userReaders.readers);
+  const backgroundColors = ['aqua', 'blue', 'green', 'orange', 'purple'];
+
+  if (!readers || readers.length === 0) {
+    return;
+  }
 
   const data = {
     labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8'],
     datasets: readers.map((reader, index) => ({
       label: reader.name,
       data: reader.readingTime,
-      backgroundColor: backgroundColors[index % backgroundColors.length], // Assign a color to the reader based on the index
+      backgroundColor: backgroundColors[index % backgroundColors.length],
       borderColor: 'black',
       borderWidth: 1,
     })),
   };
 
-  const options = {}
-  return (
-    <Bar className="reading-chart"
-      data={data}
-      options={options}
-      ></Bar>
-  )
+  const options = {};
+
+  return <Bar className="reading-chart" data={data} options={options} />;
 }
 
-export default AllReadersTimeLogChart
+export default AllReadersTimeLogChart;

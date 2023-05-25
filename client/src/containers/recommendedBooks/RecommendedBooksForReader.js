@@ -23,7 +23,13 @@ const RecommendedBooksForReader = ({ updatedReader }) => {
       {updatedReader.age === "Child" ? (
         <Container className="d-flex justify-content-center">
           <Row className="text-center">
-            <h1>Recommended Books for {updatedReader.age}ren</h1>
+            <h1>Recommended Books for Children</h1>
+          </Row>
+        </Container>
+      ) : updatedReader.age === "Baby" ? (
+        <Container className="d-flex justify-content-center">
+          <Row className="text-center">
+            <h1>Recommended Books for Babies</h1>
           </Row>
         </Container>
       ) : (
@@ -33,6 +39,7 @@ const RecommendedBooksForReader = ({ updatedReader }) => {
           </Row>
         </Container>
       )}
+
 
       {isLoading ? (
         <LoadingSpinner />
