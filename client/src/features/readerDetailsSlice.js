@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 const { createAsyncThunk, createSlice } = require("@reduxjs/toolkit");
 
-const API_URL = "http://localhost:8000/api/readers/"
+const API_URL = "https://library-reading-challenge-tracker-server.onrender.com/api/readers/"
 
 export const fetchReaderDetailsAction = createAsyncThunk("readerDetails/fetch", async(id, rejectWithValue) => {
   try {

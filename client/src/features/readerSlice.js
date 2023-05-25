@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import authHeader from "../services/auth-header";
 
-const API_URL = "http://localhost:8000/api/readers/"
+const API_URL = "https://library-reading-challenge-tracker-server.onrender.com/api/readers/"
 
 export const addReaderAction = createAsyncThunk("reader/add", async(data, rejectWithValue) => {
   const { name, age, avatar } = data;

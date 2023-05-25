@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 const { createAsyncThunk, createSlice } = require("@reduxjs/toolkit");
 
-const API_URL = "http://localhost:8000/api/books/"
+const API_URL = "https://library-reading-challenge-tracker-server.onrender.com/api/books/"
 
 // GET - get book recommendations by age group
 export const fetchBookRecommendationsByAgeGroupAction = createAsyncThunk("bookRecommedationsByAgeGroup/fetch", async(ageGroup, rejectWithValue) => {
