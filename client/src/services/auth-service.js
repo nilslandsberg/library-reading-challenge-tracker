@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = "http://localhost:8000/api/users/";
+const API_URL = "https://library-reading-challenge-tracker-server.onrender.com/api/users/";
 
 const signup = (username, email, password) => {
   const signUpRequest = { 
