@@ -66,7 +66,7 @@ const SearchForBooks = () => {
           </Row>
           <Row className="mt-3 justify-content-center">
             <Col sm={6} className="d-flex justify-content-center">
-              <Button variant="primary" type="submit">
+              <Button variant="secondary" type="submit">
                 Search
               </Button>
             </Col>
