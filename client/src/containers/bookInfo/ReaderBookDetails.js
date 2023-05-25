@@ -3,36 +3,35 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import CheckAvailabilityButton from '../components/CheckAvailabilityButton';
-import AddBookToReader from './AddBookToReader';
-import GoBackToSearchResultsButton from "./GoBackToSearchResultsButton";
+import CheckAvailabilityButton from '../../components/CheckAvailabilityButton';
+import AddBookToReader from '../readerInfo/AddBookToReader';
+import RecommendBookButton from '../recommendedBooks/RecommendBookButton';
+import GoBackToReaderDetailsButton from "./GoBackToReaderDetailsButton";
 
-const SelectedSearchBookDetails = () => {
-  const books = useSelector((state) => state.bookSearchResults.books);
-
-  // logic to find book in books array by matching the identifier in the url params
+const ReaderBookDetails = () => {
+  const readerBooks = useSelector((state) => state.readerDetails.readerDetails.books);
+  console.log(readerBooks);
   const { identifier } = useParams();
-  const isBook = (b) => b.industryIdentifiers[0]?.identifier === identifier;
-  const book = books.find(isBook);
-  const bookImage = book?.imageLinks?.smallThumbnail;
 
-
+  const selectedBook = readerBooks.filter(book => book.isbn.includes(identifier));
+  const book = selectedBook[0]
+  
   return (
     <>
       <Container className="mt-10">
         <Row>
           <Col md={6} className="text-center mb-4">
             <div className="book-image-container">
-              <Image className="book-image" src={bookImage} alt="No Image Available" />
+              <Image className="book-image" src={book.imageUrl} />
             </div>
-            <div className="book-info-container">
+            <div className="book-info-container mb-3">
               <h3>{book?.title}</h3>
               <div>{book?.authors}</div>
             </div>
-            <GoBackToSearchResultsButton />
+            <GoBackToReaderDetailsButton />
           </Col>
           <Col md={6}>
-          <div className="book-description mb-4">
+            <div className="book-description mb-4">
               <div className="book-description-content">
                 {book.description}
               </div>
@@ -41,9 +40,12 @@ const SelectedSearchBookDetails = () => {
               <Col>
                 <CheckAvailabilityButton book={book} />
               </Col>
+              <Col className="d-flex justify-content-end">
+                <RecommendBookButton book={book} />
+              </Col>
             </Row>
             <Row>
-              <Col md={8}>
+              <Col className="d-flex justify-content-center">
                 <AddBookToReader book={book} />
               </Col>
             </Row>
@@ -55,4 +57,4 @@ const SelectedSearchBookDetails = () => {
   );
 };
 
-export default SelectedSearchBookDetails;
+export default ReaderBookDetails;

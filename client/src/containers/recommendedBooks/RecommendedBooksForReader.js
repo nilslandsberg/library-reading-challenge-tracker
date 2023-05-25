@@ -1,9 +1,9 @@
 import { Card, Container, Row } from "react-bootstrap";
-import LoadingSpinner from "../components/LoadingSpinner";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { fetchBookRecommendationsByAgeGroupAction } from "../features/bookRecommendationSlice";
+import { fetchBookRecommendationsByAgeGroupAction } from "../../features/bookRecommendationSlice";
 
 const RecommendedBooksForReader = ({ updatedReader }) => {
   const books = useSelector((state) => state.bookRecommendations.recommendations);
@@ -13,7 +13,6 @@ const RecommendedBooksForReader = ({ updatedReader }) => {
 
   useEffect(() => {
     if (updatedReader && Object.keys(updatedReader).length > 0) {
-      console.log(updatedReader)
       const age = updatedReader.age.toLowerCase();
       dispatch(fetchBookRecommendationsByAgeGroupAction(age))
     }

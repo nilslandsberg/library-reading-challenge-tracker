@@ -1,7 +1,6 @@
-import { useContext } from "react"
-import ReaderContext from "../contexts/ReaderContext"
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from "chart.js";
 import { Bar } from 'react-chartjs-2';
+import { useSelector } from "react-redux";
 
 ChartJS.register(
   BarElement, 
@@ -11,7 +10,7 @@ ChartJS.register(
   Legend
 )
 const ReaderTimeLogChart = () => {
-  const reader = useContext(ReaderContext);
+  const reader = useSelector((state) => state.readerDetails.readerDetails)
 
   const data = {
     labels: [ 'Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8'],

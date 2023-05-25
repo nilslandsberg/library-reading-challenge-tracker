@@ -101,7 +101,7 @@ const EditReaderForm = () => {
             <option value="Adult">Adult (18+)</option>
           </Form.Select>
         </FloatingLabel>
-        <Button type="submit" variant="primary">
+        <Button type="submit" variant="secondary">
           Submit
         </Button>
       </Form>

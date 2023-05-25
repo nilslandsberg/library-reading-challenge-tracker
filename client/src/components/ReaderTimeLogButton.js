@@ -18,14 +18,13 @@ const ReaderTimeLogButton = () => {
 
   return (
     <ModalContext.Provider value={handleHideModal}>
-        <Button
-          className="log-reading-time-btn"
-          variant="secondary" 
-          onClick={handleShowModal}
-        >
-          Record/Edit Reading Time
-        </Button>
-
+      <Button
+        className="log-reading-time-btn"
+        variant="secondary" 
+        onClick={handleShowModal}
+      >
+        Record/Edit Reading Time
+      </Button>
       <ReaderTimeLogModal showModal={showModal} handleCloseModal={handleHideModal} />
     </ModalContext.Provider>
   )

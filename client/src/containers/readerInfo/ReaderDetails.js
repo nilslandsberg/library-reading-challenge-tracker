@@ -1,17 +1,17 @@
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import ReaderContext from "../contexts/ReaderContext";
-import ReaderBooksTable from "./ReaderBooksTable";
-import EditReaderButton from "../components/EditReaderButton";
-import DeleteReaderButton from "../components/DeleteReaderButton";
+import ReaderContext from "../../contexts/ReaderContext";
+import ReaderBooksTable from "../bookInfo/ReaderBooksTable";
+import EditReaderButton from "../../components/EditReaderButton";
+import DeleteReaderButton from "../../components/DeleteReaderButton";
 import { useEffect, useState } from "react";
-import UpdateReaderContext from "../contexts/UpdateReaderContext";
-import { fetchReaderDetailsAction } from "../features/readerDetailsSlice";
-import LoadingSpinner from "../components/LoadingSpinner";
-import RecommendedBooksForReader from "./RecommendedBooksForReader";
-import ReaderTimeLog from "../components/ReaderTimeLog";
-import ReaderTimeLogChart from "../components/ReaderTimeLogChart";
+import UpdateReaderContext from "../../contexts/UpdateReaderContext";
+import { fetchReaderDetailsAction } from "../../features/readerDetailsSlice";
+import LoadingSpinner from "../../components/LoadingSpinner";
+import RecommendedBooksForReader from "../recommendedBooks/RecommendedBooksForReader";
+import ReaderTimeLog from "../../components/ReaderTimeLog";
+import ReaderTimeLogChart from "./ReaderTimeLogChart";
 
 const ReaderDetails = () => {
   const reader = useSelector((state) => state.readerDetails.readerDetails);

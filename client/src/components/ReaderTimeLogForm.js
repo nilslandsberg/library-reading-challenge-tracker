@@ -69,7 +69,7 @@ const ReaderTimeLogForm = () => {
           </div>
         </div>
       </Form.Group>
-      <Button type="submit">Submit</Button>
+      <Button className="mt-3" type="submit" variant="secondary">Submit</Button>
     </Form> 
   )
 }

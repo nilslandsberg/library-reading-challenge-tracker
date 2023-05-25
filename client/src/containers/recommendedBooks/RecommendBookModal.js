@@ -1,6 +1,6 @@
 import { Modal } from "react-bootstrap";
 import RecommendBookForm from "./RecommendBookForm";
-import ModalContext from "../contexts/ModalContext";
+import ModalContext from "../../contexts/ModalContext";
 import { useContext } from "react";
 
 const RecommendBookModal = ({ showModal, handleCloseModal }) => {
