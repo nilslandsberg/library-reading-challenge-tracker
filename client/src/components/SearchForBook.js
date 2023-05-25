@@ -3,7 +3,7 @@ import { Button, Col, Dropdown, Form, InputGroup, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { searchBooksByAuthor, searchBooksByKeyword, searchBooksByTitle, setSearchResults } from "../features/bookSearchSlice";
-import BookSearchResults from "../containers/bookInfo/BookSearchResults";
+import BookSearchResults from "../containers/bookSearch/BookSearchResults";
 
 const SearchForBooks = () => {
   // local state for selected search style

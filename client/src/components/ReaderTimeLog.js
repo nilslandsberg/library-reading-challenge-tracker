@@ -4,6 +4,7 @@ import ReaderTimeLogModal from "./ReaderTimeLogModal";
 import ReaderTimeLogButton from "./ReaderTimeLogButton";
 import ReaderContext from "../contexts/ReaderContext";
 import { useSelector } from "react-redux";
+import { toHoursAndMinutes } from "../services/toHoursAndMinutes";
 
 
 const ReaderTimeLog = () => {
@@ -17,16 +18,6 @@ const ReaderTimeLog = () => {
   : reader.readingTime.reduce((total, elementValue) => {
       return total + elementValue;
     }, 0);
-
-  const toHoursAndMinutes = (totalMinutes) => {
-    const hours = Math.floor(totalMinutes / 60);
-    const minutes = totalMinutes % 60;
-    if (minutes > 0) {
-      return hours + " hours and " +  minutes + " minutes";
-    } else {
-      return hours + " hours";
-    }
-  }
 
   return (
     <>

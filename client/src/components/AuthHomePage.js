@@ -1,9 +1,11 @@
 import { Col, Container, Row } from "react-bootstrap"
-import MyReaders from "../containers/readerInfo/MyReaders"
+import MyReaders from "../containers/readerDetails/MyReaders"
 import AddReaderButton from "./AddReaderButton"
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getReadersAction } from "../features/readerSlice";
+import AllReadersTimeLog from "../containers/readerDetails/AllReadersTimeLog";
+import AllReadersTimeLogChart from "../containers/readerDetails/AllReadersTimeLogChart";
 
 const AuthHomePage = () => {
   const dispatch = useDispatch();
@@ -26,6 +28,11 @@ const AuthHomePage = () => {
           <Row className="my-readers">
             <MyReaders />
           </Row>
+        </Container>
+        <hr/>
+        <Container>
+          <AllReadersTimeLog />
+          <AllReadersTimeLogChart />
         </Container>
       </> 
   )

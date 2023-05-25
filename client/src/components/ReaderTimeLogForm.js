@@ -58,6 +58,8 @@ const ReaderTimeLogForm = () => {
         <option value="3">Week 4</option>
         <option value="4">Week 5</option>
         <option value="5">Week 6</option>
+        <option value="6">Week 7</option>
+        <option value="7">Week 8</option>
       </Form.Select>
       <Form.Group className="d-flex align-items-center">
         <div className="flex-grow-1">
