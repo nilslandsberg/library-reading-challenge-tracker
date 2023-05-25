@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import LoadingSpinner from '../components/LoadingSpinner';
-import ReaderCard from '../components/ReaderCard';
+import LoadingSpinner from '../../components/LoadingSpinner';
+import ReaderCard from '../../components/ReaderCard';
 
 const MyReaders = () => {
   const userReaders = useSelector((state) => state.userReaders.readers);

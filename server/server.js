@@ -7,7 +7,7 @@ const app = require('./app');
 
 const port = process.env.PORT || 8000;
 
-mongoose.connect("mongodb://localhost/readingChallenge")
+mongoose.connect(process.env.URI)
 .then(()=> {
   console.log("Connected to database");
 })

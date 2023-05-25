@@ -6,7 +6,7 @@ const API_URL = "http://localhost:8000/api/readers/"
 
 export const addReaderAction = createAsyncThunk("reader/add", async(data, rejectWithValue) => {
   const { name, age, avatar } = data;
-
+  console.log(data)
   try {
     const response = await axios.post(API_URL, { name: name, age: age, avatar: avatar }, authHeader());
     return response.data;
@@ -31,10 +31,10 @@ export const getReadersAction = createAsyncThunk("readers/fetch", async(rejectWi
 });
 
 export const updateReaderAction = createAsyncThunk("reader/update", async(data, rejectWithValue) => {
-  const { id, name, age, avatar } = data;
+  const { _id, name, age, avatar } = data;
 
   try {
-    const response = await axios.patch(API_URL + id, { name: name, age: age, avatar: avatar }, authHeader());
+    const response = await axios.patch(API_URL + _id, { name: name, age: age, avatar: avatar }, authHeader());
     console.log(response.data)
     return response.data;
   } catch (error) {

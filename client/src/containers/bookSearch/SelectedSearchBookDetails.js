@@ -3,8 +3,9 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import CheckAvailabilityButton from '../components/CheckAvailabilityButton';
-import AddBookToReader from './AddBookToReader';
+import CheckAvailabilityButton from '../../components/CheckAvailabilityButton';
+import AddBookToReader from '../readerDetails/AddBookToReader';
+import GoBackToSearchResultsButton from "./GoBackToSearchResultsButton";
 
 const SelectedSearchBookDetails = () => {
   const books = useSelector((state) => state.bookSearchResults.books);
@@ -15,21 +16,27 @@ const SelectedSearchBookDetails = () => {
   const book = books.find(isBook);
   const bookImage = book?.imageLinks?.smallThumbnail;
 
+
   return (
     <>
-      <Container className="mt-8">
-        <Row className="align-items-center">
+      <Container className="mt-10">
+        <Row>
           <Col md={6} className="text-center mb-4">
             <div className="book-image-container">
-              <Image className="book-image" src={bookImage} />
+              <Image className="book-image" src={bookImage} alt="No Image Available" />
             </div>
-            <div className="book-info-container">
+            <div className="book-info-container mb-3">
               <h3>{book?.title}</h3>
               <div>{book?.authors}</div>
             </div>
+            <GoBackToSearchResultsButton />
           </Col>
           <Col md={6}>
-            <div className="book-description mb-4">{book.description}</div>
+          <div className="book-description mb-4">
+              <div className="book-description-content">
+                {book.description}
+              </div>
+            </div>
             <Row>
               <Col>
                 <CheckAvailabilityButton book={book} />

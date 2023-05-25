@@ -11,6 +11,7 @@ const readerSchema = new Schema({
   },
   age: {
     type: String,
+    required: true,
   },
   avatar: {
     type: String,
@@ -23,7 +24,7 @@ const readerSchema = new Schema({
   ],
   readingTime: {
     type: [Number],
-    default: Array(12).fill(0) // Initialize with 0 reading time for 12 weeks
+    default: Array(8).fill(0) // Initialize with 0 reading time for 8 weeks
   }
 }, {timestamps: true});
 

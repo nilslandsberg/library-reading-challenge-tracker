@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
-import ModalContext from "../contexts/ModalContext";
+import ModalContext from "../../contexts/ModalContext";
 import RecommendBookModal from './RecommendBookModal';
 
 const RecommendBookButton = ({ book }) => {

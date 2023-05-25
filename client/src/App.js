@@ -6,10 +6,11 @@ import HomePage from './containers/HomePage';
 import LoginForm from './containers/LoginForm';
 import SignUpForm from './containers/SignUpForm';
 import SearchForBooks from './components/SearchForBook';
-import SelectedBookDetails from './containers/SelectedSearchBookDetails';
-import ReaderDetails from './containers/ReaderDetails';
-import ReaderBookDetails from './containers/ReaderBookDetails';
-import RecommendedBookDetails from './containers/RecommendedBookDetails';
+import SelectedBookDetails from './containers/bookSearch/SelectedSearchBookDetails';
+import ReaderDetails from './containers/readerDetails/ReaderDetails';
+import ReaderBookDetails from './containers/readerDetails/ReaderBookDetails';
+import RecommendedBookDetails from './containers/recommendedBooks/RecommendedBookDetails';
+
 
 const App = () => {
   return (
@@ -18,16 +19,16 @@ const App = () => {
         <NavBar />
       </Container>
       <br />
-      <Container className="md-4 mt-5">
+      <Container className="md-4 pt-5">
         <Routes> 
           <Route exact path='/' element={<HomePage />} />
           <Route path='/login' element={<LoginForm />} />
           <Route path='/signup' element={<SignUpForm />} />
           <Route path='/search' element={<SearchForBooks />} />
-          <Route path='/book/:identifier' element={<SelectedBookDetails />} />
+          <Route exact path='/book/:identifier' element={<SelectedBookDetails />} />
           <Route path='/readers/:readerId' element={<ReaderDetails />} />
-          <Route path='/readers/:readerId/book/:identifier' element={<ReaderBookDetails />} />
-          <Route path='/readers/:readerId/recommendedbook/:identifier' element={<RecommendedBookDetails />} />
+          <Route exact path='/readers/:readerId/book/:identifier' element={<ReaderBookDetails />} />
+          <Route exact path='/readers/:readerId/recommendedbook/:identifier' element={<RecommendedBookDetails />} />
         </Routes>  
       </Container>
     </>

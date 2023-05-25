@@ -2,9 +2,9 @@ import { Navbar, Container, Nav, Dropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
-import Login from "./Login";
-import SignUp from "./SignUp";
 import UserLogout from "./UserLogout";
+import SignUpLink from "./SignUpLink";
+import LoginLink from "./LoginLink";
 
 const NavBar = () => {
   const userIsLoggedIn = useSelector((state) => state.userAuth.isLoggedIn);
@@ -15,6 +15,7 @@ const NavBar = () => {
       return (
         <>
           <Nav.Item>
+            <Link to='/' className="navbar-link">My Readers</Link>
             <Link to='/search' className="navbar-link">Book Search</Link>
           </Nav.Item>
           <Dropdown style={{ marginLeft: '10px' }}>
@@ -30,14 +31,14 @@ const NavBar = () => {
     } else {
       return (
         <>
-          <SignUp />
-          <Login />
+          <SignUpLink />
+          <LoginLink />
         </>
       )
     }
   }
   return (
-    <Navbar bg="dark" variant="dark" expand="md" fixed="top">
+    <Navbar className="navbar-custom" bg="dark" variant="dark" expand="md" fixed="top">
       <Container fluid>
         <Navbar.Brand href="/" className="navbar-brand">
           2023 Summer Reading Challenge

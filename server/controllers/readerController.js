@@ -138,7 +138,8 @@ exports.updateReader = async (req, res) => {
 // PATCH - update reading time for a specific week
 exports.updateReadingTime = async (req, res) => {
   try {
-    const { readerId, weekIndex, readingTime } = req.body;
+    const { readerId } = req.params;
+    const { weekIndex, readingTime } = req.body;
 
     const reader = await Reader.findById(readerId);
 
@@ -182,7 +183,7 @@ exports.deleteOneReader = async (req, res) => {
   }
 }
 
-// PATCH - delete books from a reader
+// PATCH - remove books from a reader
 exports.removeBooksFromReader = async (req, res) => {
   try{
     const { readerId } = req.params;

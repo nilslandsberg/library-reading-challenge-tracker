@@ -62,7 +62,7 @@ const LoginForm = () => {
                 <span>{' '}Loading...</span>
               </Button>
               ) : (
-                <Button variant="primary" type="submit">Login</Button>
+                <Button variant="secondary" type="submit">Login</Button>
               )}
             </Form>
           </Card.Body>

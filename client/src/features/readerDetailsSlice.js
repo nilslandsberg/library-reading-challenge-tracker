@@ -48,6 +48,21 @@ export const removeBooksFromReaderAction = createAsyncThunk("books/deleteFromRea
   }
 })
 
+export const updateReadingTimeAction = createAsyncThunk("readingTime/update", async(data, rejectWithValue) => {
+  const { readerId, weekIndex, readingTime } = data;
+  try {
+    const response = await axios.patch(API_URL + readerId + '/reading-time', { weekIndex: weekIndex, readingTime: readingTime }, authHeader());
+    return { weekIndex: weekIndex, readingTime: readingTime }
+  } catch (error) {
+    if (!error?.response) {
+      throw error
+    }
+    console.log(error.response.data)
+    return rejectWithValue(error?.response?.data)
+  }
+  
+})
+
 const initialState = {
   readerDetails: {}
 };
@@ -73,6 +88,22 @@ const readerDetailsSlice = createSlice({
       const bookIdsToRemove = action.payload;
       // use filter to create new state that excludes books with _ids that match bookIdsToRemove
       state.readerDetails.books = state.readerDetails.books.filter((book) => !bookIdsToRemove.includes(book._id));
+    });
+    builder.addCase(updateReadingTimeAction.fulfilled, (state, action) => {
+      console.log(action.payload)
+      const weekIndexToUpdate = Number(action.payload.weekIndex);
+      const updatedReadingTime = action.payload.readingTime;
+      state.readerDetails.readingTime.splice(weekIndexToUpdate, 1, updatedReadingTime);
+      state.error = undefined;
+      state.isLoading = false;
+    });
+    builder.addCase(updateReadingTimeAction.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action?.payload;
+    });
+    builder.addCase(updateReadingTimeAction.pending, (state, action) => {
+      state.isLoading = true;
+      state.error = undefined;
     })
   }
 });
