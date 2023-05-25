@@ -1,5 +1,5 @@
 import { Col, Container, Row } from "react-bootstrap"
-import MyReaders from "../containers/MyReaders"
+import MyReaders from "../containers/readerInfo/MyReaders"
 import AddReaderButton from "./AddReaderButton"
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";

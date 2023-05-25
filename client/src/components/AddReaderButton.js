@@ -17,7 +17,7 @@ const AddReaderButton = () => {
   return (
     <span>
       <ModalContext.Provider value={handleCloseModal}>
-        <Button onClick={handleShowModal}>+ Add Reader</Button>
+        <Button onClick={handleShowModal} variant="secondary">+ Add Reader</Button>
         <AddChildModal showModal={showModal} handleCloseModal={handleCloseModal} />
       </ModalContext.Provider>
     </span>

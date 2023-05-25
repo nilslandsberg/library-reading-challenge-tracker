@@ -2,9 +2,9 @@ import { Navbar, Container, Nav, Dropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
-import Login from "./Login";
-import SignUp from "./SignUp";
 import UserLogout from "./UserLogout";
+import SignUpLink from "./SignUpLink";
+import LoginLink from "./LoginLink";
 
 const NavBar = () => {
   const userIsLoggedIn = useSelector((state) => state.userAuth.isLoggedIn);
@@ -31,8 +31,8 @@ const NavBar = () => {
     } else {
       return (
         <>
-          <SignUp />
-          <Login />
+          <SignUpLink />
+          <LoginLink />
         </>
       )
     }

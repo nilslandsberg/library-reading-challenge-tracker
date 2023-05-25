@@ -1,7 +1,7 @@
 import { Card, Container } from "react-bootstrap";
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom";
-import LoadingSpinner from "../components/LoadingSpinner";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const BookSearchResults = () => {
   const books = useSelector((state) => state.bookSearchResults.books);

@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom"
-import { fetchBookRecommendationsByAgeGroupAction } from "../features/bookRecommendationSlice";
+import { fetchBookRecommendationsByAgeGroupAction } from "../../features/bookRecommendationSlice";
 
 const GoBackToReaderDetailsButton = () => {
   const reader = useSelector((state) => state.readerDetails.readerDetails);

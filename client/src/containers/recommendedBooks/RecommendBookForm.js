@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { Button, FloatingLabel, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import ModalContext from "../contexts/ModalContext";
-import { addBookRecommendationAction } from "../features/bookRecommendationSlice";
+import ModalContext from "../../contexts/ModalContext";
+import { addBookRecommendationAction } from "../../features/bookRecommendationSlice";
 
 const RecommendBookForm = () => {
   const reader = useSelector((state) => state.readerDetails.readerDetails);

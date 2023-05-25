@@ -3,14 +3,20 @@ import { Col } from "react-bootstrap"
 import ReaderTimeLogModal from "./ReaderTimeLogModal";
 import ReaderTimeLogButton from "./ReaderTimeLogButton";
 import ReaderContext from "../contexts/ReaderContext";
+import { useSelector } from "react-redux";
 
 
 const ReaderTimeLog = () => {
-  const reader = useContext(ReaderContext)
+  const reader = useSelector((state) => state.readerDetails.readerDetails)
+  const updatedReader = useContext(ReaderContext)
 
-  const totalTime = reader.readingTime.reduce((total, elementValue) => {
-    return total + elementValue;
-  });
+  const totalTime = reader.readingTime
+  ? reader.readingTime.reduce((total, elementValue) => {
+      return total + elementValue;
+    }, 0)
+  : reader.readingTime.reduce((total, elementValue) => {
+      return total + elementValue;
+    }, 0);
 
   const toHoursAndMinutes = (totalMinutes) => {
     const hours = Math.floor(totalMinutes / 60);
@@ -24,8 +30,8 @@ const ReaderTimeLog = () => {
 
   return (
     <>
-      <h2>{reader.name}'s Time Log</h2>
-      <h2 className="text-end">Total Time: {toHoursAndMinutes(totalTime)}</h2>
+      <h3>{updatedReader.name}'s Time Log</h3>
+      <h4 className="text-end">Total Time: {toHoursAndMinutes(totalTime)}</h4>
       <Col md={4}>
         <ReaderTimeLogButton />
         <ReaderTimeLogModal /> 

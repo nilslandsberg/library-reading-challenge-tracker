@@ -3,17 +3,17 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import CheckAvailabilityButton from '../components/CheckAvailabilityButton';
-import AddBookToReader from './AddBookToReader';
-import RecommendBookButton from './RecommendBookButton';
-import GoBackToReaderDetailsButton from "./GoBackToReaderDetailsButton";
+import CheckAvailabilityButton from "../../components/CheckAvailabilityButton";
+import AddBookToReader from "../readerInfo/AddBookToReader";
+import GoBackToReaderDetailsButton from "../bookInfo/GoBackToReaderDetailsButton";
+import ReaderReviews from "../bookInfo/ReaderReviews";
 
-const SelectedSearchBookDetails = () => {
-  const readerBooks = useSelector((state) => state.readerDetails.readerDetails.books);
+const RecommendedBookDetails = () => {
+  const recommendedBooks = useSelector((state) => state.bookRecommendations.recommendations);
 
   const { identifier } = useParams();
 
-  const selectedBook = readerBooks.filter(book => book.isbn.includes(identifier));
+  const selectedBook = recommendedBooks.filter(book => book.isbn.includes(identifier));
   const book = selectedBook[0]
   
   return (
@@ -37,16 +37,21 @@ const SelectedSearchBookDetails = () => {
               </div>
             </div>
             <Row>
-              <Col>
+              <Col className="d-flex justify-content-center">
                 <CheckAvailabilityButton book={book} />
-              </Col>
-              <Col className="d-flex justify-content-end">
-                <RecommendBookButton book={book} />
               </Col>
             </Row>
             <Row>
-              <Col className="d-flex justify-content-center">
+              <Col className="d-flex justify-content-center mb-5">
                 <AddBookToReader book={book} />
+              </Col>
+            </Row>
+            <Row className="text-center mb-3">
+              <h3>Reader Reviews</h3>
+            </Row>
+            <Row>
+              <Col className="reader-reviews">
+                <ReaderReviews book={book} />
               </Col>
             </Row>
           </Col>
@@ -57,4 +62,4 @@ const SelectedSearchBookDetails = () => {
   );
 };
 
-export default SelectedSearchBookDetails;
+export default RecommendedBookDetails;
