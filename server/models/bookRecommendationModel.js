@@ -39,6 +39,10 @@ const bookRecommendationSchema = new Schema({
       text: {
         type: String,
         required: true,
+      },
+      timestamp: {
+        type: Date,
+        default: Date.now,
       }
     }
   ]

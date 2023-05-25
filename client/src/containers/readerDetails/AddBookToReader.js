@@ -1,7 +1,9 @@
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { addBookToReaderAction } from "../features/readerDetailsSlice";
+import { addBookToReaderAction } from "../../features/readerDetailsSlice";
+import { getReadersAction } from "../../features/readerSlice";
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
 
 const AddBookToReader = ({ book }) => {
   const userReaders = useSelector((state) => state.userReaders.readers);
@@ -9,6 +11,11 @@ const AddBookToReader = ({ book }) => {
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (userReaders.length === 0) {
+      dispatch(getReadersAction())
+    }
+  })
   const handleAddBook = (data) => {
     let imageUrl = "";
 
@@ -26,7 +33,6 @@ const AddBookToReader = ({ book }) => {
       isbn = book.isbn;
     }
 
-    console.log(imageUrl)
     const requestBody = {
       id: data.reader,
       title: book.title,

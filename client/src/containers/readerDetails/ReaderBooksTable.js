@@ -4,7 +4,7 @@ import { Button, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { removeBooksFromReaderAction } from "../features/readerDetailsSlice";
+import { removeBooksFromReaderAction } from "../../features/readerDetailsSlice";
 
 const ReaderBooksTable = ({ updatedReader }) => {
   const readerDetails = useSelector((state) => state.readerDetails.readerDetails);
@@ -35,7 +35,7 @@ const ReaderBooksTable = ({ updatedReader }) => {
   };
 
   return (
-    <Table striped bordered hover>
+    <Table striped bordered hover className="reader-book-table">
       <thead>
         <tr>
           <th>Book Title</th>

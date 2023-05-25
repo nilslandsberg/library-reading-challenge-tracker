@@ -74,7 +74,7 @@ const SignUpForm = () => {
                 <span>{' '}Loading...</span>
               </Button>
               ) : (
-                <Button variant="primary" type="submit">Sign Up</Button>
+                <Button variant="secondary" type="submit">Sign Up</Button>
               )}
           </Form>
         </Card.Body>

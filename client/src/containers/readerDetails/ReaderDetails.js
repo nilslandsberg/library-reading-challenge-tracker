@@ -1,15 +1,17 @@
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import ReaderContext from "../contexts/ReaderContext";
+import ReaderContext from "../../contexts/ReaderContext";
 import ReaderBooksTable from "./ReaderBooksTable";
-import EditReaderButton from "../components/EditReaderButton";
-import DeleteReaderButton from "../components/DeleteReaderButton";
+import EditReaderButton from "../../components/EditReaderButton";
+import DeleteReaderButton from "../../components/DeleteReaderButton";
 import { useEffect, useState } from "react";
-import UpdateReaderContext from "../contexts/UpdateReaderContext";
-import { fetchReaderDetailsAction } from "../features/readerDetailsSlice";
-import LoadingSpinner from "../components/LoadingSpinner";
-import RecommendedBooksForReader from "./RecommendedBooksForReader";
+import UpdateReaderContext from "../../contexts/UpdateReaderContext";
+import { fetchReaderDetailsAction } from "../../features/readerDetailsSlice";
+import LoadingSpinner from "../../components/LoadingSpinner";
+import RecommendedBooksForReader from "../recommendedBooks/RecommendedBooksForReader";
+import ReaderTimeLog from "../../components/ReaderTimeLog";
+import ReaderTimeLogChart from "./ReaderTimeLogChart";
 
 const ReaderDetails = () => {
   const reader = useSelector((state) => state.readerDetails.readerDetails);
@@ -73,14 +75,21 @@ const ReaderDetails = () => {
                     </UpdateReaderContext.Provider>
                   </Col>
                   <Col lg={9} className="mb-3">
-                    <h3>{updatedReader.name}'s Books</h3>
-                    <ReaderBooksTable updatedReader={updatedReader} />
-                    <div className="text-end">
-                      <h5>Total Books Read: {reader.books.length}</h5>
-                      <h5>Total Number of Pages Read: {totalPages}</h5>
-                    </div>
+                    <ReaderContext.Provider value={updatedReader}>
+                      <ReaderTimeLog />
+                      <ReaderTimeLogChart />
+                    </ReaderContext.Provider>  
                   </Col>
                 </Row>
+              </Container>
+              <hr />
+              <Container>
+                <h3>{updatedReader.name}'s Books</h3>
+                <ReaderBooksTable updatedReader={updatedReader} />
+                <div className="text-end">
+                  <h5>Total Books Read: {reader.books.length}</h5>
+                  <h5>Total Number of Pages Read: {totalPages}</h5>
+                </div>
               </Container>
               <hr />
               <RecommendedBooksForReader updatedReader={updatedReader} />

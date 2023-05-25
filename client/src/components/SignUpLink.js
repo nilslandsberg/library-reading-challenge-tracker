@@ -1,16 +1,12 @@
 import { Nav } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 
-
-const Login = () => {
-
+const SignUpLink = () => {
   return (
     <Nav.Item>
-      <Nav.Link href="/login">
-        Login
-      </Nav.Link>
+      <Nav.Link href="/signup">Sign Up</Nav.Link>
     </Nav.Item>
   )
 }
 
-export default Login
+export default SignUpLink;

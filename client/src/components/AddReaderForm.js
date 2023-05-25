@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
 import { Button, Carousel, FloatingLabel, Form, Image } from "react-bootstrap";
-import ponyTailGirl from '../files/avatars/4043250_avatar_child_girl_kid_icon.svg';
+import baby from "../files/avatars/4043239_baby_child_kid_toddler_icon.svg";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addReaderAction } from "../features/readerSlice";
@@ -9,7 +9,7 @@ import avatars from "./AvatarData";
 
 
 const AddReaderForm = () => {
-  const [ selectedAvatar, setSelectedAvatar ] = useState(ponyTailGirl);
+  const [ selectedAvatar, setSelectedAvatar ] = useState(baby);
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const handleCloseModal = useContext(ModalContext)
 
@@ -18,7 +18,7 @@ const AddReaderForm = () => {
   const handleFormSubmit = (data) => {
     const requestBody = {
       name: data.name,
-      ageGroup: data.ageGroup,
+      age: data.age,
       avatar: selectedAvatar
     };
     dispatch(addReaderAction(requestBody));
@@ -70,7 +70,7 @@ const AddReaderForm = () => {
             Age Range
           </span>
         }>
-          <Form.Select {...register("ageGroup")} required>
+          <Form.Select {...register("age")} required>
             <option value="">Select age range</option>
             <option value="Baby">Baby (0-2)</option>
             <option value="Child">Child (3-12)</option>
@@ -78,7 +78,7 @@ const AddReaderForm = () => {
             <option value="Adult">Adult (18+)</option>
           </Form.Select>
         </FloatingLabel>
-        <Button type="submit" variant="primary">Submit</Button>
+        <Button type="submit" variant="secondary">Submit</Button>
       </Form>
     </>
   );

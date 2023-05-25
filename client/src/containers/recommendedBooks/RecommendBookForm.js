@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { Button, FloatingLabel, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import ModalContext from "../contexts/ModalContext";
-import { addBookRecommendationAction } from "../features/bookRecommendationSlice";
+import ModalContext from "../../contexts/ModalContext";
+import { addBookRecommendationAction } from "../../features/bookRecommendationSlice";
 
 const RecommendBookForm = () => {
   const reader = useSelector((state) => state.readerDetails.readerDetails);
@@ -40,7 +40,7 @@ const RecommendBookForm = () => {
         }>
           <Form.Control
             as="textarea"
-            rows={6}
+            rows={10}
             {...register("recommendation", { minLength: 20 })}
             required
           />
@@ -54,7 +54,7 @@ const RecommendBookForm = () => {
             Age Group
           </span>
         }>
-          <Form.Select className="mb-3" {...register("ageGroup")} required>
+          <Form.Select className="mb-3" {...register("ageGroup")} defaultValue={reader.age.toLowerCase()} required>
             <option value="">Select an age group</option>
             <option value="baby">Baby</option>
             <option value="child">Child</option>
@@ -62,7 +62,7 @@ const RecommendBookForm = () => {
             <option value="adult">Adult</option>
           </Form.Select>
         </FloatingLabel>
-        <Button type="submit" variant="primary">Submit Recommendation</Button>
+        <Button type="submit" variant="secondary">Submit Recommendation</Button>
       </Form>
     </>
   );

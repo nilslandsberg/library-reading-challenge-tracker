@@ -3,7 +3,7 @@ import { Button, Col, Dropdown, Form, InputGroup, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { searchBooksByAuthor, searchBooksByKeyword, searchBooksByTitle, setSearchResults } from "../features/bookSearchSlice";
-import BookSearchResults from "../containers/BookSearchResults";
+import BookSearchResults from "../containers/bookSearch/BookSearchResults";
 
 const SearchForBooks = () => {
   // local state for selected search style
@@ -66,7 +66,7 @@ const SearchForBooks = () => {
           </Row>
           <Row className="mt-3 justify-content-center">
             <Col sm={6} className="d-flex justify-content-center">
-              <Button variant="primary" type="submit">
+              <Button variant="secondary" type="submit">
                 Search
               </Button>
             </Col>
