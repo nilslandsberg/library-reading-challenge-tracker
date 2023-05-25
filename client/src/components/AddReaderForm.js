@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
 import { Button, Carousel, FloatingLabel, Form, Image } from "react-bootstrap";
-import ponyTailGirl from '../files/avatars/4043250_avatar_child_girl_kid_icon.svg';
+import baby from "../files/avatars/4043239_baby_child_kid_toddler_icon.svg";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addReaderAction } from "../features/readerSlice";
@@ -9,7 +9,7 @@ import avatars from "./AvatarData";
 
 
 const AddReaderForm = () => {
-  const [ selectedAvatar, setSelectedAvatar ] = useState(ponyTailGirl);
+  const [ selectedAvatar, setSelectedAvatar ] = useState(baby);
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const handleCloseModal = useContext(ModalContext)
 
