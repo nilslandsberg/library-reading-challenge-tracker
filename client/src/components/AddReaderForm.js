@@ -78,7 +78,7 @@ const AddReaderForm = () => {
             <option value="Adult">Adult (18+)</option>
           </Form.Select>
         </FloatingLabel>
-        <Button type="submit" variant="primary">Submit</Button>
+        <Button type="submit" variant="secondary">Submit</Button>
       </Form>
     </>
   );

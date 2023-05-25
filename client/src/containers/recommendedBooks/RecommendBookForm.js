@@ -62,7 +62,7 @@ const RecommendBookForm = () => {
             <option value="adult">Adult</option>
           </Form.Select>
         </FloatingLabel>
-        <Button type="submit" variant="primary">Submit Recommendation</Button>
+        <Button type="submit" variant="secondary">Submit Recommendation</Button>
       </Form>
     </>
   );
