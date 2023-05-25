@@ -4,13 +4,13 @@ import { useParams } from "react-router";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CheckAvailabilityButton from '../../components/CheckAvailabilityButton';
-import AddBookToReader from '../readerInfo/AddBookToReader';
+import AddBookToReader from './AddBookToReader';
 import RecommendBookButton from '../recommendedBooks/RecommendBookButton';
 import GoBackToReaderDetailsButton from "./GoBackToReaderDetailsButton";
 
 const ReaderBookDetails = () => {
   const readerBooks = useSelector((state) => state.readerDetails.readerDetails.books);
-  console.log(readerBooks);
+
   const { identifier } = useParams();
 
   const selectedBook = readerBooks.filter(book => book.isbn.includes(identifier));

@@ -6,9 +6,9 @@ import HomePage from './containers/HomePage';
 import LoginForm from './containers/LoginForm';
 import SignUpForm from './containers/SignUpForm';
 import SearchForBooks from './components/SearchForBook';
-import SelectedBookDetails from './containers/bookInfo/SelectedSearchBookDetails';
-import ReaderDetails from './containers/readerInfo/ReaderDetails';
-import ReaderBookDetails from './containers/bookInfo/ReaderBookDetails';
+import SelectedBookDetails from './containers/bookSearch/SelectedSearchBookDetails';
+import ReaderDetails from './containers/readerDetails/ReaderDetails';
+import ReaderBookDetails from './containers/readerDetails/ReaderBookDetails';
 import RecommendedBookDetails from './containers/recommendedBooks/RecommendedBookDetails';
 
 

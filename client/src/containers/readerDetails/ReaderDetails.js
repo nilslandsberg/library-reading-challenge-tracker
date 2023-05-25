@@ -2,7 +2,7 @@ import { Card, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import ReaderContext from "../../contexts/ReaderContext";
-import ReaderBooksTable from "../bookInfo/ReaderBooksTable";
+import ReaderBooksTable from "./ReaderBooksTable";
 import EditReaderButton from "../../components/EditReaderButton";
 import DeleteReaderButton from "../../components/DeleteReaderButton";
 import { useEffect, useState } from "react";

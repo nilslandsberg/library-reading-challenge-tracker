@@ -4,8 +4,8 @@ import { useParams } from "react-router";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CheckAvailabilityButton from '../../components/CheckAvailabilityButton';
-import AddBookToReader from '../readerInfo/AddBookToReader';
-import GoBackToSearchResultsButton from "../GoBackToSearchResultsButton";
+import AddBookToReader from '../readerDetails/AddBookToReader';
+import GoBackToSearchResultsButton from "./GoBackToSearchResultsButton";
 
 const SelectedSearchBookDetails = () => {
   const books = useSelector((state) => state.bookSearchResults.books);
