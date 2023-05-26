@@ -5,7 +5,7 @@ const NonAuthView = () => {
   return (
     <>
       <Container className="d-flex justify-content-center mb-3">
-        <Image className="challenge-logo" src={readingChallengeLogo} fluid />
+        <Image className="challenge-logo" src={readingChallengeLogo} />
       </Container>
       <Container>
         <Row className="d-flex justify-content-center">
