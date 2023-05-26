@@ -1,13 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap"
-import ModalContext from "../contexts/ModalContext";
+import ModalContext from "../../contexts/ModalContext";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { updateReadingTimeAction } from "../features/readerDetailsSlice";
-import ReaderContext from "../contexts/ReaderContext";
+import { useDispatch, useSelector } from "react-redux";
+import { updateReadingTimeAction } from "../../features/readerDetailsSlice";
 
 const ReaderTimeLogForm = () => {
-  const reader = useContext(ReaderContext);
+  const reader = useSelector((state) => state.readerDetails.readerDetails)
   const readingTime = reader.readingTime
  
   const [ selectedWeek, setSelectedWeek ] = useState("0");
