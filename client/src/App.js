@@ -1,4 +1,4 @@
-import { Container } from 'react-bootstrap';
+import { Container, Image, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Routes, Route } from 'react-router';
 import NavBar from './components/NavBar';
@@ -10,6 +10,7 @@ import SelectedBookDetails from './containers/bookSearch/SelectedSearchBookDetai
 import ReaderDetails from './containers/readerDetails/ReaderDetails';
 import ReaderBookDetails from './containers/readerDetails/ReaderBookDetails';
 import RecommendedBookDetails from './containers/recommendedBooks/RecommendedBookDetails';
+import LibraryLogo from './components/LibraryLogo';
 
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
           <Route exact path='/readers/:readerId/book/:identifier' element={<ReaderBookDetails />} />
           <Route exact path='/readers/:readerId/recommendedbook/:identifier' element={<RecommendedBookDetails />} />
         </Routes>  
+        <LibraryLogo />
       </Container>
     </>
   );
