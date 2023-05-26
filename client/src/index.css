@@ -126,7 +126,7 @@ hr {
   padding-left: 20px
 }
 
-.navbar-custom {
+.navbar-style {
   background: linear-gradient(to left, black, grey) !important;
 }
 
@@ -154,11 +154,6 @@ hr {
 .navbar-link:focus {
   color: #fff !important;
   outline: none;
-}
-
-.navbar-style {
-  z-index: 100;
-  position: relative;
 }
 
 .reader-avatar {
