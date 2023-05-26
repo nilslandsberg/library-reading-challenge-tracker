@@ -53,7 +53,7 @@ const ReaderDetails = () => {
                 <Row className="justify-content-center">
                   <Col lg={3} className="mt-3 d-flex justify-content-center">
                     <UpdateReaderContext.Provider value={handleUpdatedReader}>
-                      <Card className="reader-details-card text-center">
+                      <Card className="reader-details-card text-center mb-3">
                         <Card.Header as="h3">{updatedReader.name}</Card.Header>
                         <Card.Img
                           className="reader-avatar mb-2"
@@ -84,7 +84,7 @@ const ReaderDetails = () => {
               </Container>
               <hr />
               <Container>
-                <h3>{updatedReader.name}'s Books</h3>
+                <h3 className="mb-3">{updatedReader.name}'s Books</h3>
                 <ReaderBooksTable updatedReader={updatedReader} />
                 <div className="text-end">
                   <h5>Total Books Read: {reader.books.length}</h5>
