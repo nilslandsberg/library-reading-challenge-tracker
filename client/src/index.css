@@ -3,6 +3,8 @@
 
 body {
   margin: 0;
+  padding-top: 50px;
+  padding-bottom: 50px;
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -13,6 +15,11 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+hr {
+  margin-top: 30px !important;
+  margin-bottom: 30px !important;
 }
 
 .add-book-btn {
@@ -94,7 +101,7 @@ code {
 }
 
 .challenge-logo {
-  height: 400px;
+  height: 300px;
 }
 
 .input-reader-field {
@@ -114,9 +121,13 @@ code {
 }
 
 .navbar-custom {
-  z-index: 1000;
-  position: relative;
   background: linear-gradient(to left, black, grey) !important;
+}
+
+.navbar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .navbar-links-container {
@@ -137,6 +148,11 @@ code {
 .navbar-link:focus {
   color: #fff !important;
   outline: none;
+}
+
+.navbar-style {
+  z-index: 100;
+  position: relative;
 }
 
 .reader-avatar {

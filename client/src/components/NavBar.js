@@ -38,12 +38,14 @@ const NavBar = () => {
     }
   }
   return (
-    <Navbar className="navbar-custom" bg="dark" variant="dark" expand="md" fixed="top">
+    <Navbar className="navbar-style" bg="dark" variant="dark" expand="md" fixed="top">
       <Container fluid>
-        <Navbar.Brand href="/" className="navbar-brand">
-          2023 Summer Reading Challenge
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <div className="navbar-header">
+          <Navbar.Brand href="/" className="navbar-brand">
+            2023 Summer Reading Challenge
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        </div>
         <Navbar.Collapse className="me-auto justify-content-end" id="responsive-navbar-nav">
           <Nav className="navbar-links-container">
             {renderLinks()}
