@@ -7,6 +7,7 @@ import CheckAvailabilityButton from '../../components/CheckAvailabilityButton';
 import AddBookToReader from './AddBookToReader';
 import RecommendBookButton from '../recommendedBooks/RecommendBookButton';
 import GoBackToReaderDetailsButton from "./GoBackToReaderDetailsButton";
+import multipleAuthors from "../../services/multipleAuthors";
 
 const ReaderBookDetails = () => {
   const readerBooks = useSelector((state) => state.readerDetails.readerDetails.books);
@@ -16,6 +17,8 @@ const ReaderBookDetails = () => {
   const selectedBook = readerBooks.filter(book => book.isbn.includes(identifier));
   const book = selectedBook[0]
   
+  const authors = multipleAuthors(book);
+
   return (
     <>
       <Container className="mt-10">
@@ -26,7 +29,7 @@ const ReaderBookDetails = () => {
             </div>
             <div className="book-info-container mb-3">
               <h3>{book?.title}</h3>
-              <div>{book?.authors}</div>
+              <div>{authors}</div>
             </div>
             <GoBackToReaderDetailsButton />
           </Col>

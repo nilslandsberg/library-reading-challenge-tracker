@@ -1,5 +1,5 @@
 import { Modal } from "react-bootstrap";
-import ReaderTimeLogForm from "./ReaderTimeLogForm";
+import ReaderTimeLogForm from "../containers/readerDetails/ReaderTimeLogForm";
 
 const ReaderTimeLogModal = ({ showModal, handleCloseModal }) => {
   return (
