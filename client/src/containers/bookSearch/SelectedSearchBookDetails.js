@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import CheckAvailabilityButton from '../../components/CheckAvailabilityButton';
 import AddBookToReader from '../readerDetails/AddBookToReader';
 import GoBackToSearchResultsButton from "./GoBackToSearchResultsButton";
+import multipleAuthors from "../../services/multipleAuthors";
 
 const SelectedSearchBookDetails = () => {
   const books = useSelector((state) => state.bookSearchResults.books);
@@ -16,7 +17,7 @@ const SelectedSearchBookDetails = () => {
   const book = books.find(isBook);
   const bookImage = book?.imageLinks?.smallThumbnail;
 
-
+  const authors = multipleAuthors(book);
   return (
     <>
       <Container className="mt-10">
@@ -27,7 +28,7 @@ const SelectedSearchBookDetails = () => {
             </div>
             <div className="book-info-container mb-3">
               <h3>{book?.title}</h3>
-              <div>{book?.authors}</div>
+              <div>{authors}</div>
             </div>
             <GoBackToSearchResultsButton />
           </Col>
