@@ -21,6 +21,7 @@ const ReaderDetails = () => {
 
   const { readerId } = useParams();
 
+  // local state to update reader details from EditReaderForm
   const [ updatedReader, setUpdatedReader ] = useState(reader);
 
   const handleUpdatedReader = (readerUpdate) => {

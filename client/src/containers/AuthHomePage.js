@@ -1,13 +1,14 @@
 import { Col, Container, Row } from "react-bootstrap"
-import MyReaders from "../containers/readerDetails/MyReaders"
-import AddReaderButton from "./AddReaderButton"
+import MyReaders from "./readerDetails/MyReaders"
+import AddReaderButton from "../components/AddReaderButton"
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getReadersAction } from "../features/readerSlice";
-import AllReadersTimeLog from "../containers/readerDetails/AllReadersTimeLog";
-import AllReadersTimeLogChart from "../containers/readerDetails/AllReadersTimeLogChart";
+import AllReadersTimeLog from "./readerDetails/AllReadersTimeLog";
+import AllReadersTimeLogChart from "./readerDetails/AllReadersTimeLogChart";
 
 const AuthHomePage = () => {
+  const username = useSelector((state) => state.userAuth.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,7 +20,7 @@ const AuthHomePage = () => {
         <Container className="readers">
           <Row className="align-items-center justify-content-between">
             <Col>
-              <h3>My Readers</h3>
+              <h3>{username} Readers</h3>
             </Col>
             <Col className="d-flex justify-content-end">
               <AddReaderButton />
