@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { removeBooksFromReaderAction } from "../../features/readerDetailsSlice";
+import { useNavigate } from "react-router-dom";
+import { fetchReaderDetailsAction, removeBooksFromReaderAction } from "../../features/readerDetailsSlice";
 
 const ReaderBooksTable = ({ updatedReader }) => {
   const readerDetails = useSelector((state) => state.readerDetails.readerDetails);
@@ -15,6 +15,7 @@ const ReaderBooksTable = ({ updatedReader }) => {
   const [selectedBooks, setSelectedBooks] = useState([]);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleBookSelection = (bookId) => {
     setSelectedBooks((prevSelectedBooks) => {
@@ -34,6 +35,12 @@ const ReaderBooksTable = ({ updatedReader }) => {
     dispatch(removeBooksFromReaderAction(requestBody));
   };
 
+  const handleClick = async (identifier) => {
+    const id = reader._id
+    await dispatch(fetchReaderDetailsAction(id));
+    navigate(`/readers/${reader._id}/book/` + identifier)
+  }
+
   return (
     <Table striped bordered hover className="reader-book-table">
       <thead>
@@ -50,10 +57,8 @@ const ReaderBooksTable = ({ updatedReader }) => {
         {books && books.length > 0 ? (
           books.map((book, index) => (
             <tr key={index}>
-              <td className="book-title">
-                <Link className="book-link" to={`/readers/${reader._id}/book/${book.isbn}`}>
-                  {book.title}
-                </Link>
+              <td className="book-title" onClick={() => handleClick(book.isbn)}>
+                {book.title}
               </td>
               <td>{book.authors[0]}</td>
               <td>{book.pages}</td>
