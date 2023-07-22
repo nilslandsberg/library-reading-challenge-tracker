@@ -19,7 +19,7 @@ const EditReaderForm = () => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
   const dispatch = useDispatch();
-  console.log(updatedReader._id)
+ 
   const handleFormSubmit = async (data) => {
     const requestBody = {
       _id: updatedReader._id,

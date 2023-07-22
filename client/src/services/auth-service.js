@@ -9,7 +9,8 @@ const signup = (username, email, password) => {
     password: password,
   }
   return axios.post(API_URL + "signup", signUpRequest  
-  );
+  )
+ 
 };
 
 const login = (username, password) => {

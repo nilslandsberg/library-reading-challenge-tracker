@@ -14,7 +14,6 @@ const DeleteReaderButton = () => {
   const navigate = useNavigate();
 
   const handleDelete = async (reader) => {
-    console.log(reader)
     const confirmation = window.confirm("Are you sure you want to delete this reader?");
     if (confirmation) {
       await dispatch(deleteReaderAction(reader._id));

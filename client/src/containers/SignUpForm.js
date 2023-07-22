@@ -20,10 +20,17 @@ const SignUpForm = () => {
     setLoading(true);
     dispatch(signup(data))
       .then((response) => {
+        const token = response.payload.token
+        const user = response.payload.newUser.username
+        if (response.payload.token) {
+          localStorage.setItem("user", JSON.stringify({
+            token, user 
+          }));
+        }
         setLoading(false);
         if (response.error) {
           reset();
-        } else {
+      } else {
           navigate('/');
           reset();
         }

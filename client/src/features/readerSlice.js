@@ -6,7 +6,6 @@ const API_URL = "https://library-reading-challenge-tracker-server.onrender.com/a
 
 export const addReaderAction = createAsyncThunk("reader/add", async(data, rejectWithValue) => {
   const { name, age, avatar } = data;
-  console.log(data)
   try {
     const response = await axios.post(API_URL, { name: name, age: age, avatar: avatar }, authHeader());
     return response.data;
@@ -35,7 +34,6 @@ export const updateReaderAction = createAsyncThunk("reader/update", async(data, 
 
   try {
     const response = await axios.patch(API_URL + _id, { name: name, age: age, avatar: avatar }, authHeader());
-    console.log(response.data)
     return response.data;
   } catch (error) {
     if (!error?.resposne) {
@@ -48,7 +46,6 @@ export const updateReaderAction = createAsyncThunk("reader/update", async(data, 
 export const deleteReaderAction = createAsyncThunk("reader/delete", async(id, rejectWithValue) => {
   try {
     const response = await axios.delete(API_URL + id, authHeader());
-    console.log(response.data);
     return response.data;
   } catch (error) {
     if (!error?.response) {

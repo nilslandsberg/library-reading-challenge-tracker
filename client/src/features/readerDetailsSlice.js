@@ -37,13 +37,12 @@ export const addBookToReaderAction = createAsyncThunk("book/addToReader", async(
 export const removeBooksFromReaderAction = createAsyncThunk("books/deleteFromReader", async(data, rejectWithValue) => {
   const { readerId, bookIds } = data;
   try {
-    const response = await axios.patch(API_URL + readerId + '/books', { bookIds: bookIds }, authHeader());
+    await axios.patch(API_URL + readerId + '/books', { bookIds: bookIds }, authHeader());
     return bookIds;
   } catch (error) {
     if (!error?.response) {
       throw error
     }
-    console.log(error.response.data)
     return rejectWithValue(error?.response?.data)
   }
 })
@@ -51,13 +50,12 @@ export const removeBooksFromReaderAction = createAsyncThunk("books/deleteFromRea
 export const updateReadingTimeAction = createAsyncThunk("readingTime/update", async(data, rejectWithValue) => {
   const { readerId, weekIndex, readingTime } = data;
   try {
-    const response = await axios.patch(API_URL + readerId + '/reading-time', { weekIndex: weekIndex, readingTime: readingTime }, authHeader());
+    await axios.patch(API_URL + readerId + '/reading-time', { weekIndex: weekIndex, readingTime: readingTime }, authHeader());
     return { weekIndex: weekIndex, readingTime: readingTime }
   } catch (error) {
     if (!error?.response) {
       throw error
     }
-    console.log(error.response.data)
     return rejectWithValue(error?.response?.data)
   }
   
@@ -90,7 +88,6 @@ const readerDetailsSlice = createSlice({
       state.readerDetails.books = state.readerDetails.books.filter((book) => !bookIdsToRemove.includes(book._id));
     });
     builder.addCase(updateReadingTimeAction.fulfilled, (state, action) => {
-      console.log(action.payload)
       const weekIndexToUpdate = Number(action.payload.weekIndex);
       const updatedReadingTime = action.payload.readingTime;
       state.readerDetails.readingTime.splice(weekIndexToUpdate, 1, updatedReadingTime);

@@ -28,7 +28,6 @@ const LoginForm = () => {
       navigate('/');
     } else {
       if (errorMessage.message) {
-        console.log(errorMessage.message);
         <CustomAlert variant="danger" message='test' />
       }
     }

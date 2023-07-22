@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button, Col, Dropdown, Form, InputGroup, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { searchBooksByAuthor, searchBooksByKeyword, searchBooksByTitle, setSearchResults } from "../features/bookSearchSlice";
+import { searchBooksByAuthor, searchBooksByKeyword, searchBooksByTitle } from "../features/bookSearchSlice";
 import BookSearchResults from "../containers/bookSearch/BookSearchResults";
 
 const SearchForBooks = () => {

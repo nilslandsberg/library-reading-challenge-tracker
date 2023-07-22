@@ -28,7 +28,6 @@ export const login = createAsyncThunk("auth/login", async(data, thunkAPI) => {
   const { username, password } = data;
   try {
     const response = await authService.login(username, password);
-    console.log(response);
     thunkAPI.dispatch(setAuthMessage(`Welcome back, ${username}!`));
     return response;
   } catch (error) {
@@ -57,6 +56,7 @@ const userAuthSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(signup.fulfilled, (state, action) => {
       state.isLoggedIn = true;
+      state.user = action.payload.newUser.username;
     });
     builder.addCase(signup.rejected, (state, action) => {
       state.isLoggedIn = false;

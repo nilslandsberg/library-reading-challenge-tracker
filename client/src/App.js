@@ -1,4 +1,4 @@
-import { Container, Image, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Routes, Route } from 'react-router';
 import NavBar from './components/NavBar';
