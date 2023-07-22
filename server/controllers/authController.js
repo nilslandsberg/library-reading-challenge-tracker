@@ -18,15 +18,18 @@ exports.signup = async (req, res) => {
 
     if (existingUsername) {
       return res.status(400).json({ message: "Username already in use" });
-    } else if (existingEmail) {
+    } 
+    
+    if (existingEmail) {
       return res.status(400).json({ message: "Account for email already exists" });
-    } else {
-      const newUser = await User.create({
-        username: username,
-        email: email,
-        password: password
-      });
     }
+    
+    const newUser = await User.create({
+      username: username,
+      email: email,
+      password: password
+    });
+  
     
     const token = createToken(newUser._id);
 
