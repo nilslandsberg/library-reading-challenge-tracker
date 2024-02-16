@@ -23,8 +23,8 @@ hr {
 }
 
 .add-book-btn {
-  border-top-left-radius: 0; /* Remove the top-left border radius */
-  border-bottom-left-radius: 0; /* Remove the bottom-left border radius */
+  border-top-left-radius: 0; 
+  border-bottom-left-radius: 0; 
 }
 
 .book-card:hover {
@@ -107,7 +107,7 @@ hr {
 }
 
 .input-reader-field {
-  width: calc(100% - 5px); /* Adjust the width to make it extend to the button */
+  width: calc(100% - 5px); 
   border-radius: 0px !important;
 }
 

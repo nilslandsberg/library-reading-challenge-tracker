@@ -10,7 +10,6 @@ const createToken = id => {
 // POST - creates a new user
 exports.signup = async (req, res) => {
   try {
-    console.log(req.body);
     const { username, email, password } = req.body;
     
     const existingUsername = await User.findOne({ username: username });
